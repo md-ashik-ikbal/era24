@@ -1,7 +1,8 @@
+import AdminDashboard from "./dashboard";
+
 const _AdminDashboard = () => {
     return(
-        <>
-        </>
+        <AdminDashboard />
     );
 }
 

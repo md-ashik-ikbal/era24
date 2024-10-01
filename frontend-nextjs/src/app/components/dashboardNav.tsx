@@ -106,11 +106,13 @@ const DashboardNavbar = () => {
                     Log Out
                 </motion.button>
                 {
-                    (loggedinData?.role == "admin" || loggedinData?.role == "sadmin") && (
+                    (loggedinData?.role == "user") && (
                         <button
                             type="button"
                             onClick={() => {Router.push(Routes.AdminDashboard)}}
-                            className="border">
+                            className="h-full px-4 absolute top-0 right-28"
+                        >
+                            Previllage
                         </button>
                     )
                 }

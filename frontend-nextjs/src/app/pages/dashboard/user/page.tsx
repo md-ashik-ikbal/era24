@@ -1,13 +1,19 @@
 import { Metadata } from "next";
-import Dashboard from "./dashboard";
+import UserDashboard from "./dashboard";
+import DashboardNavbar from "@/app/components/dashboardNav";
 
 export const metadata: Metadata = {
-    title: "Dashboard"
+    title: "Dashboard | User"
 }
 
 const _UserDashboard = () => {
     return(
-        <Dashboard />
+        <>
+            <DashboardNavbar />
+            <div className="relative top-14">
+                <UserDashboard />
+            </div>
+        </>
     );
 }
 

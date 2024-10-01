@@ -13,17 +13,21 @@ const LogIn = () => {
 
     useEffect(() => {
         const Fetch = async () => {
-            if(sessionStorage.getItem("loginId") != null) {
-                const result = await axios.get(API_ENDPOINTS.GetDataById+sessionStorage.getItem("loginId"));
-                if(result.data?.role == "user") {
-                    Router.push(Routes.UserDashboard);
-                } else if(result.data?.role == "admin") {
-                    Router.push(Routes.AdminDashboard);
-                } 
+            const result = await axios.get(API_ENDPOINTS.GetDataById + sessionStorage.getItem("loginId"));
+            if (result.data?.role == "user") {
+                Router.push(Routes.UserDashboard);
+            } else if (result.data?.role == "admin") {
+                Router.push(Routes.AdminDashboard);
             }
-        };
+        }
 
-        Fetch();
+        if (sessionStorage.getItem("loginId") != null) {
+            if(sessionStorage.getItem("loginId") == "-1") {
+                Router.push(Routes.AdminDashboard);
+            } else {
+                Fetch();
+            };
+        }
     }, []);
 
     const ValidationCheck = async (email: string, password: string) => {
