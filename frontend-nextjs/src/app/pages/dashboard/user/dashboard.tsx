@@ -69,7 +69,7 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
@@ -81,7 +81,7 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
@@ -93,7 +93,7 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
@@ -106,7 +106,7 @@ const UserDashboard = () => {
                             onClick={() => {Router.push(Routes.Packages)}}
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
@@ -118,7 +118,7 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
@@ -130,7 +130,7 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
@@ -142,7 +142,7 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
@@ -154,7 +154,7 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
@@ -384,7 +384,7 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
@@ -396,7 +396,7 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
@@ -414,7 +414,7 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
@@ -426,7 +426,7 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
@@ -438,7 +438,7 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
@@ -450,7 +450,7 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
                                     src={dummyProfile}
                                     alt="NF"
