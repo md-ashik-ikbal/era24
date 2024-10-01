@@ -10,6 +10,7 @@ import Image from "next/image";
 import dummyProfile from "@/app/public/images/dummyProfile.png"
 import dollarIcon from "@/app/public/images/dollarIcon.png"
 import Link from "next/link";
+import LogoutButton from "./dashboard/logoutButton";
 
 const DashboardNavbar = () => {
     const Router = useRouter();
@@ -19,15 +20,10 @@ const DashboardNavbar = () => {
 
     useEffect(() => {
         const Fetch = async () => {
-            if(sessionStorage.getItem("loginId") != null) {
+            if(sessionStorage.getItem("loginId") != null && sessionStorage.getItem("loginId") != "-1") {
                 const result = await axios.get(API_ENDPOINTS.GetDataById+sessionStorage.getItem("loginId"));
                 setLoggedinData(result.data);
-                if(result.data?.role != "user") {
-                    Router.push(Routes.LogIn);
-                }
                 return result.data;
-            }else {
-                Router.push(Routes.LogIn);
             }
         };
 
@@ -92,21 +88,11 @@ const DashboardNavbar = () => {
                     </div>
                 </motion.div>
                 
-                <motion.button
-                    className="h-full px-4 absolute top-0 right-4"
-                    onClick={LogoutButtonClick}
-                    key={"sidebarButton"}
-                    whileHover={{
-                        scale: 1.2
-                    }}
-                    whileTap={{
-                        scale: 0.9
-                    }}
-                >
-                    Log Out
-                </motion.button>
+                <motion.div className="h-full absolute top-0 right-4">
+                    <LogoutButton />
+                </motion.div>
                 {
-                    (loggedinData?.role == "user") && (
+                    (loggedinData?.role == "admin") && (
                         <button
                             type="button"
                             onClick={() => {Router.push(Routes.AdminDashboard)}}

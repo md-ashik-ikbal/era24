@@ -19,6 +19,8 @@ const LogIn = () => {
             } else if (result.data?.role == "admin") {
                 Router.push(Routes.AdminDashboard);
             }
+
+            return result.data;
         }
 
         if (sessionStorage.getItem("loginId") != null) {
