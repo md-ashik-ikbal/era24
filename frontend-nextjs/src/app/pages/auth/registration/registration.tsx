@@ -104,7 +104,7 @@ const Registration: React.FC = () => {
                 <div className="mb-4">
                     <label className="block mb-2 text-sm font-medium text-gray-300">Password</label>
                     <input
-                        type="password"
+                        type="text"
                         {...register('password', {
                             required: 'Password is required',
                             pattern: { value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/, message: "Password is required in valid formate" }
@@ -116,7 +116,7 @@ const Registration: React.FC = () => {
                 <div className="mb-4">
                     <label className="block mb-2 text-sm font-medium text-gray-300">Confirm Password</label>
                     <input
-                        type="password"
+                        type="text"
                         {...register('confirmPassword', {
                             required: 'Password is required',
                             validate: (value) => {
