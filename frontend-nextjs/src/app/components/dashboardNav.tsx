@@ -20,23 +20,24 @@ const DashboardNavbar = () => {
 
     useEffect(() => {
         const Fetch = async () => {
-            if(sessionStorage.getItem("loginId") != null && sessionStorage.getItem("loginId") != "-1") {
-                const result = await axios.get(API_ENDPOINTS.GetDataById+sessionStorage.getItem("loginId"));
+            if (sessionStorage.getItem("loginId") != null && sessionStorage.getItem("loginId") != "-1") {
+                const result = await axios.get(API_ENDPOINTS.GetDataById + sessionStorage.getItem("loginId"));
                 setLoggedinData(result.data);
                 return result.data;
             }
         };
 
+        sessionStorage.getItem("loginId");
+
         Fetch();
     }, []);
 
     const ProfileButtonClick = () => {
-        Router.push(Routes.LogIn);
-    }
-
-    const LogoutButtonClick = () => {
-        sessionStorage.removeItem("loginId");
-        Router.push(Routes.LogIn);
+        if (loggedinData?.role == "user") {
+            Router.push(Routes.UserProfile);
+        } else if (sessionStorage.getItem("loginId") == "-1" || loggedinData?.role == "admin") {
+            Router.push(Routes.AdminProfile);
+        }
     }
 
     const ShowBalanceButtonClick = () => {
@@ -49,14 +50,11 @@ const DashboardNavbar = () => {
     return (
         <>
             <nav
-                className={`fixed w-full top-0 h-14 px-4 duration-300 z-50 backdrop-blur bg-white/50 dark:bg-black/50 border-b border-black/10 dark:border-white/10`}
+                className={`sticky w-full top-0 h-14 px-4 duration-300 z-50 backdrop-blur bg-white/50 dark:bg-black/50 border-b border-black/10 dark:border-white/10`}
             >
-                <motion.div
-                    className="h-full min-w-48 w-[15%] content-center grid grid-cols-4 gap-0 justify-items-center"
-                    key={"homeButton"}
-                >
+                <div className="relative w-48 h-14 ">
                     <button
-                        className="outline w-10 h-10 mt-1 col-span-1 content-center grid justify-items-center overflow-hidden rounded-full duration-300 hover:scale-110 active:scale-100"
+                        className="absolute mt-2 outline outline-zinc-500 w-10 h-10 content-center grid justify-items-center overflow-hidden rounded-full duration-300 hover:scale-110 active:scale-100"
                         type="button"
                         onClick={ProfileButtonClick}
                     >
@@ -65,43 +63,37 @@ const DashboardNavbar = () => {
                             width={40}
                             height={40}
                             alt="NF"
-                            className="bg-white"
+                            className="bg-white rounded-full"
                         />
                     </button>
-                    <div className=" col-span-3 content-center grid justify-items-center">
-                        <p className="">
-                            {loggedinData?.userName}
-                        </p>
-                        <button
-                            type="button"
-                            onClick={ShowBalanceButtonClick}
-                            className="border p-0.5 text-sm rounded-full grid grid-cols-4">
-                            <Image
-                                src={dollarIcon}
-                                width={20}
-                                height={20}
-                                alt="NF"
-                                className="bg-white rounded-full col-span-1"
-                            />
-                            <p className="col-span-3"> {showBanance} </p>
-                        </button>
-                    </div>
-                </motion.div>
-                
+
+                    {
+                        (loggedinData?.role == "user") && (
+                            <div className=" w-40 absolute left-10 content-center grid justify-items-center">
+                                <p className="">
+                                    {loggedinData?.userName}
+                                </p>
+                                <button
+                                    type="button"
+                                    onClick={ShowBalanceButtonClick}
+                                    className="border p-0.5 text-sm rounded-full grid grid-cols-4">
+                                    <Image
+                                        src={dollarIcon}
+                                        width={20}
+                                        height={20}
+                                        alt="NF"
+                                        className="bg-white rounded-full col-span-1"
+                                    />
+                                    <p className="col-span-3"> {showBanance} </p>
+                                </button>
+                            </div>
+                        )
+                    }
+                </div>
+
                 <motion.div className="h-full absolute top-0 right-4">
                     <LogoutButton />
                 </motion.div>
-                {
-                    (loggedinData?.role == "admin") && (
-                        <button
-                            type="button"
-                            onClick={() => {Router.push(Routes.AdminDashboard)}}
-                            className="h-full px-4 absolute top-0 right-28"
-                        >
-                            Previllage
-                        </button>
-                    )
-                }
             </nav>
         </>
     );

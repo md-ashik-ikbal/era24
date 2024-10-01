@@ -1,9 +1,16 @@
-const UserProfile = () => {
+import { Metadata } from "next";
+import UserProfile from "./profile";
+
+export const metadata: Metadata = {
+    title: "Profile | User"
+}
+
+const _UserProfile = () => {
     return(
-        <div>
-            <h1>User Profile.</h1>
-        </div>
+        <>
+            <UserProfile />
+        </>
     );
 }
 
-export default UserProfile;
+export default _UserProfile;

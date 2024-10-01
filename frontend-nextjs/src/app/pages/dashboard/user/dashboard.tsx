@@ -63,7 +63,7 @@ const UserDashboard = () => {
     if (loggedinData?.role == "user") {
         return (
             <>
-                <div className="border border-white/20 w-[90%] relative left-[5%] top-4 mb-8 ">
+                <div className="border border-white/20 w-[90%] relative left-[5%] my-4 ">
                     <h1 className="border-b border-white/20 mb-4 py-2 text-3xl text-center">My Ads</h1>
                     <div className="grid grid-cols-4">
                         <button
