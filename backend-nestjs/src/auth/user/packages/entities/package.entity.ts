@@ -9,5 +9,11 @@ export class PackageEntity {
     title: string;
 
     @Column()
+    duration: string;
+
+    @Column()
+    description: string;
+
+    @Column()
     price: number
 }

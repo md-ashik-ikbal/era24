@@ -14,6 +14,8 @@ export class PackagesService {
   async Create(createPackageDto: CreatePackageDto) {
     let packagesEntity: PackageEntity = new PackageEntity();
     packagesEntity.title = createPackageDto.title;
+    packagesEntity.duration = createPackageDto.duration;
+    packagesEntity.description = createPackageDto.description;
     packagesEntity.price = createPackageDto.price;
 
     return this.packageRepository.save(packagesEntity);

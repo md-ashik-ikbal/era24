@@ -41,7 +41,7 @@ const DashboardNavbar = () => {
     }
 
     const ShowBalanceButtonClick = () => {
-        setShowBalance(loggedinData?.role);
+        setShowBalance(loggedinData?.balance + " BDT");
         setTimeout(() => {
             setShowBalance("Show Balance");
         }, 5000);
@@ -73,10 +73,11 @@ const DashboardNavbar = () => {
                                 <p className="">
                                     {loggedinData?.userName}
                                 </p>
-                                <button
+                                <motion.button
                                     type="button"
                                     onClick={ShowBalanceButtonClick}
-                                    className="border p-0.5 text-sm rounded-full grid grid-cols-4">
+                                    className="border border-blue-700 p-1 text-sm rounded-full grid grid-cols-5"
+                                >
                                     <Image
                                         src={dollarIcon}
                                         width={20}
@@ -84,8 +85,8 @@ const DashboardNavbar = () => {
                                         alt="NF"
                                         className="bg-white rounded-full col-span-1"
                                     />
-                                    <p className="col-span-3"> {showBanance} </p>
-                                </button>
+                                    <p className="col-span-4"> {showBanance} </p>
+                                </motion.button>
                             </div>
                         )
                     }

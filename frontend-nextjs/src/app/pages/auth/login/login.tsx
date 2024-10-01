@@ -1,4 +1,5 @@
 "use client"
+import Loading from '@/app/components/loading/loading';
 import API_ENDPOINTS from '@/app/routes/api';
 import Routes from '@/app/routes/routes';
 import axios from 'axios';
@@ -10,6 +11,7 @@ const LogIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const Fetch = async () => {
@@ -59,10 +61,12 @@ const LogIn = () => {
         const isValid = await ValidationCheck(email, password);
 
         if(isValid) {
+            setIsLoading(true);
             try {
                 if(email == "sa@g.c" && password == "Password@1") {
                     sessionStorage.setItem("loginId", "-1");
                     Router.push(Routes.AdminDashboard);
+                    setIsLoading(false);
                 } else {
                     const result = await axios.post(API_ENDPOINTS.LoginAuth,{
                         email: email,
@@ -74,71 +78,78 @@ const LogIn = () => {
     
                         if(result.data.role == "user"){
                             Router.push(Routes.UserDashboard);
+                            setIsLoading(false);
                         } else if(result.data.role == "admin") {
                             Router.push(Routes.AdminDashboard);
+                            setIsLoading(false);
                         } else {
                             alert("Unknown role");
                         }
                     } else {
                         setError("Credentials did not match");
+                        setIsLoading(false);
                     }
                 }
             } catch (error) {
                 setError("Network error");
+                setIsLoading(false);
             }
         }
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen">
-            <form
-                onSubmit={handleSubmit}
-                className="bg-gray-900/50 border border-white/10 p-6 rounded shadow-md w-96"
-            >
-                <h2 className="text-2xl mb-8 text-center">Log In</h2>
-                {error && <p className="text-red-500 text-center text-sm mb-4">{error}</p>}
-                <div className="mb-4">
-                    <label htmlFor="email" className="block mb-1 text-sm">Email</label>
-                    <input
-                        type="text"
-                        id="email"
-                        placeholder="example@company.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="outline outline-1 outline-white/20 duration-300 focus:outline-4 bg-black/30 p-2 w-full rounded"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="password" className="block mb-1 text-sm">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="••••••••"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="outline outline-1 outline-white/20 duration-300 focus:outline-4 bg-black/30 p-2 w-full rounded"
-                    />
-                </div>
-                <button
-                    type="submit"
-                    className="bg-blue-500 text-white p-2 mb-4 rounded w-full duration-300 hover:bg-blue-700"
+        <>
+            <Loading isLoading={isLoading} message={"Checking Your Credentials..."} />
+            <div className="flex items-center justify-center min-h-screen">
+                <form
+                    onSubmit={handleSubmit}
+                    className="bg-gray-900/50 border border-white/10 p-6 rounded shadow-md w-96"
                 >
-                    Log In
-                </button>
-                <div className="flex items-center justify-center">
-                    <hr className="flex-grow border-gray-500" />
-                    <span className="mx-2 text-gray-500">Or</span>
-                    <hr className="flex-grow border-gray-500" />
-                </div>
-                <button
-                    type="button"
-                    onClick={()=>{Router.push(Routes.Registration)}}
-                    className="border border-white/20 text-white p-2 mt-4 rounded w-full duration-300 hover:bg-white/10"
-                >
-                    Create Account
-                </button>
-            </form>
-        </div>
+                    <h2 className="text-2xl mb-8 text-center">Log In</h2>
+                    {error && <p className="text-red-500 text-center text-sm mb-4">{error}</p>}
+                    <div className="mb-4">
+                        <label htmlFor="email" className="block mb-1 text-sm">Email</label>
+                        <input
+                            type="text"
+                            id="email"
+                            placeholder="example@company.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="outline outline-1 outline-white/20 duration-300 focus:outline-4 bg-black/30 p-2 w-full rounded"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label htmlFor="password" className="block mb-1 text-sm">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="••••••••"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="outline outline-1 outline-white/20 duration-300 focus:outline-4 bg-black/30 p-2 w-full rounded"
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        className="bg-blue-500 text-white p-2 mb-4 rounded w-full duration-300 hover:bg-blue-700"
+                    >
+                        Log In
+                    </button>
+                    <div className="flex items-center justify-center">
+                        <hr className="flex-grow border-gray-500" />
+                        <span className="mx-2 text-gray-500">Or</span>
+                        <hr className="flex-grow border-gray-500" />
+                    </div>
+                    <button
+                        type="button"
+                        onClick={()=>{Router.push(Routes.Registration)}}
+                        className="border border-white/20 text-white p-2 mt-4 rounded w-full duration-300 hover:bg-white/10"
+                    >
+                        Create Account
+                    </button>
+                </form>
+            </div>
+        </>
     );
 };
 

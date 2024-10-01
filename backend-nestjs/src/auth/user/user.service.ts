@@ -33,6 +33,7 @@ export class UserService {
       user.phone = createUserDto.phone;
       user.email = createUserDto.email;
       user.password = createUserDto.password;
+      user.balance = createUserDto.balance;
   
       return this.userRepository.save(user);
     } else {

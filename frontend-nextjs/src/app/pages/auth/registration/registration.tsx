@@ -32,7 +32,8 @@ const Registration: React.FC = () => {
                     userName: data.userName,
                     phone: data.phone,
                     email: data.email,
-                    password: data.password
+                    password: data.password,
+                    balance: 0
                 });
 
                 setSuccess("Registration Success. Now you can Log In");
