@@ -14,6 +14,16 @@ import bikroyAd2 from "@/app/public/images/bikroyAd2.jpg";
 import darazAd1 from "@/app/public/images/darazAd1.jpg";
 import darazAd2 from "@/app/public/images/darazAd2.png";
 import othobaAd1 from "@/app/public/images/othobaAd1.jpeg";
+import settingIcon from "@/app/public/images/setting.png"
+import workIcon from "@/app/public/images/work.png";
+import depositIcon from "@/app/public/images/deposit.png";
+import withdraIcon from "@/app/public/images/withdraw.png";
+import packagesIcon from "@/app/public/images/packages.png";
+import transactionIcon from "@/app/public/images/transaction.png";
+import referIcon from "@/app/public/images/refer.png";
+import helpIcon from "@/app/public/images/help.png";
+
+
 
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -71,7 +81,7 @@ const UserDashboard = () => {
                         >
                             <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
-                                    src={dummyProfile}
+                                    src={workIcon}
                                     alt="NF"
                                     className=""
                                 />
@@ -83,7 +93,7 @@ const UserDashboard = () => {
                         >
                             <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
-                                    src={dummyProfile}
+                                    src={depositIcon}
                                     alt="NF"
                                     className=""
                                 />
@@ -93,9 +103,9 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
+                            <div className="w-10 h-10 rounded-full overflow-hidden">
                                 <Image
-                                    src={dummyProfile}
+                                    src={withdraIcon}
                                     alt="NF"
                                     className=""
                                 />
@@ -108,7 +118,7 @@ const UserDashboard = () => {
                         >
                             <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
-                                    src={dummyProfile}
+                                    src={packagesIcon}
                                     alt="NF"
                                     className=""
                                 />
@@ -132,7 +142,7 @@ const UserDashboard = () => {
                         >
                             <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
-                                    src={dummyProfile}
+                                    src={referIcon}
                                     alt="NF"
                                     className=""
                                 />
@@ -144,7 +154,7 @@ const UserDashboard = () => {
                         >
                             <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
-                                    src={dummyProfile}
+                                    src={transactionIcon}
                                     alt="NF"
                                     className=""
                                 />
@@ -156,7 +166,7 @@ const UserDashboard = () => {
                         >
                             <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
-                                    src={dummyProfile}
+                                    src={helpIcon}
                                     alt="NF"
                                     className=""
                                 />
@@ -386,7 +396,7 @@ const UserDashboard = () => {
                         >
                             <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
-                                    src={dummyProfile}
+                                    src={settingIcon}
                                     alt="NF"
                                     className=""
                                 />

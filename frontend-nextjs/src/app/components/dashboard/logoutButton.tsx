@@ -3,6 +3,8 @@
 import Routes from "@/app/routes/routes";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import LogoutIcon from "@/app/public/images/logout.png";
 
 const LogoutButton = () => {
     const Router = useRouter();
@@ -24,7 +26,12 @@ const LogoutButton = () => {
                 scale: 0.9
             }}
         >
-            Log Out
+            <div className="h-10 w-10 rounded-full overflow-hidden">
+                <Image
+                    src={LogoutIcon}
+                    alt="NF"
+                />
+            </div>
         </motion.button>
     );
 }

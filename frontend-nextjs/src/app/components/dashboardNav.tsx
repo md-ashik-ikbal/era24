@@ -58,12 +58,12 @@ const DashboardNavbar = () => {
                         type="button"
                         onClick={ProfileButtonClick}
                     >
-                        <div>
-                        <Image
-                            src={dummyProfile}
-                            alt="NF"
-                            className="bg-white rounded-full"
-                        />
+                        <div className="">
+                            <Image
+                                src={dummyProfile}
+                                alt="NF"
+                                className=""
+                            />
                         </div>
                     </button>
 
@@ -78,7 +78,7 @@ const DashboardNavbar = () => {
                                     onClick={ShowBalanceButtonClick}
                                     className="border border-blue-700 p-1 text-sm rounded-full grid grid-cols-5"
                                 >
-                                    <div className="h-5 w-5 bg-white/100 col-span-1 rounded-full overflow-hidden">
+                                    <div className="h-5 w-5 bg-amber-700 col-span-1 rounded-full overflow-hidden">
                                         <Image
                                             src={dollarIcon}
                                             alt="NF"
