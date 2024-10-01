@@ -69,98 +69,98 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             My Work
                         </button>
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             Deposit
                         </button>
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             Withdraw
                         </button>
                         <button
                             onClick={() => {Router.push(Routes.Packages)}}
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             Package
                         </button>
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             Profile
                         </button>
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             Refer
                         </button>
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             Transaction
                         </button>
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             Helpline
                         </button>
                     </div>
@@ -190,8 +190,6 @@ const UserDashboard = () => {
                                     >
                                         <Image
                                             src={ajkerdealAd1}
-                                            height={300}
-                                            width={1000}
                                             alt="NF"
                                             className="object-fill"
                                         />
@@ -222,8 +220,6 @@ const UserDashboard = () => {
                                     >
                                         <Image
                                             src={ajkerdealAd2}
-                                            height={300}
-                                            width={1000}
                                             alt="NF"
                                             className=""
                                         />
@@ -254,8 +250,6 @@ const UserDashboard = () => {
                                     >
                                         <Image
                                             src={bikroyAd1}
-                                            height={300}
-                                            width={1000}
                                             alt="NF"
                                         />
                                     </motion.div>
@@ -285,8 +279,6 @@ const UserDashboard = () => {
                                     >
                                         <Image
                                             src={bikroyAd2}
-                                            height={300}
-                                            width={1000}
                                             alt="NF"
                                             className="object-fill"
                                         />
@@ -317,8 +309,6 @@ const UserDashboard = () => {
                                     >
                                         <Image
                                             src={darazAd1}
-                                            height={300}
-                                            width={1000}
                                             alt="NF"
                                             className="object-fill"
                                         />
@@ -349,8 +339,6 @@ const UserDashboard = () => {
                                     >
                                         <Image
                                             src={darazAd2}
-                                            height={300}
-                                            width={1000}
                                             alt="NF"
                                             className="object-fill"
                                         />
@@ -381,8 +369,6 @@ const UserDashboard = () => {
                                     >
                                         <Image
                                             src={othobaAd1}
-                                            height={300}
-                                            width={1000}
                                             alt="NF"
                                             className="object-fill"
                                         />
@@ -398,25 +384,25 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             Settings
                         </button>
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             About
                         </button>
                     </div>
@@ -428,49 +414,49 @@ const UserDashboard = () => {
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             Daraz
                         </button>
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             AjkerDeal
                         </button>
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             Bikroy
                         </button>
                         <button
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <Image
-                                src={dummyProfile}
-                                height={40}
-                                width={40}
-                                alt="NF"
-                                className="mb-2 rounded"
-                            />
+                            <div className="w-10 h-10 mb-2 rounded overflow-hidden">
+                                <Image
+                                    src={dummyProfile}
+                                    alt="NF"
+                                    className=""
+                                />
+                            </div>
                             Othoba
                         </button>
                     </div>

@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import API_ENDPOINTS from '@/app/routes/api';
+import BackButton from '@/app/components/backButton/backButton';
 
 type FormData = {
     userName: string;
@@ -47,11 +48,17 @@ const Registration: React.FC = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen">
+            
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="bg-gray-800/50 p-8 rounded-lg shadow-md w-full max-w-md"
             >
-                <h2 className="text-2xl font-bold mb-6 text-center border-b border-white/20 pb-4">Register</h2>
+                <div className="w-md grid grid-cols-9 border-b border-white/20 pb-4 mb-8">
+                    <div className='w-10 h-10 col-span-1 absolute  rounded-full overflow-hidden'>
+                        <BackButton />
+                    </div>
+                    <h2 className="col-span-8 text-2xl font-bold text-center pb-4">Register</h2>
+                </div>
                 {success && <p className="text-blue-700 text-center mb-4 font-semibold text-sm">{success}</p>}
                 <div className="mb-4">
                     <label className="block mb-2 text-sm font-medium text-gray-300">Username</label>
@@ -117,7 +124,7 @@ const Registration: React.FC = () => {
                                 return value == getPassword || "Password do not match"
                             }
                         })}
-                        className={`bg-transparent outline outline-2  duration-300 focus:outline-4 p-2 mb-1 w-full rounded ${errors.confirmPassword ? 'outline-pink-700' : 'outline-white/20'}`}
+                        className={`bg-transparent outline outline-2 duration-300 focus:outline-4 p-2 mb-1 w-full rounded ${errors.confirmPassword ? 'outline-pink-700' : 'outline-white/20'}`}
                     />
                     {errors.confirmPassword && <p className="text-pink-700 font-semibold text-sm">{errors.confirmPassword.message}</p>}
                 </div>

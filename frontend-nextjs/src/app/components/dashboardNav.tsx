@@ -58,13 +58,13 @@ const DashboardNavbar = () => {
                         type="button"
                         onClick={ProfileButtonClick}
                     >
+                        <div>
                         <Image
                             src={dummyProfile}
-                            width={40}
-                            height={40}
                             alt="NF"
                             className="bg-white rounded-full"
                         />
+                        </div>
                     </button>
 
                     {
@@ -78,13 +78,13 @@ const DashboardNavbar = () => {
                                     onClick={ShowBalanceButtonClick}
                                     className="border border-blue-700 p-1 text-sm rounded-full grid grid-cols-5"
                                 >
-                                    <Image
-                                        src={dollarIcon}
-                                        width={20}
-                                        height={20}
-                                        alt="NF"
-                                        className="bg-white rounded-full col-span-1"
-                                    />
+                                    <div className="h-5 w-5 bg-white/100 col-span-1 rounded-full overflow-hidden">
+                                        <Image
+                                            src={dollarIcon}
+                                            alt="NF"
+                                            className=""
+                                        />
+                                    </div>
                                     <p className="col-span-4"> {showBanance} </p>
                                 </motion.button>
                             </div>
