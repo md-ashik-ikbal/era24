@@ -103,6 +103,7 @@ const UserDashboard = () => {
                             Withdraw
                         </button>
                         <button
+                            onClick={() => {Router.push(Routes.Packages)}}
                             className="mb-4 grid justify-items-center rounded"
                         >
                             <Image
