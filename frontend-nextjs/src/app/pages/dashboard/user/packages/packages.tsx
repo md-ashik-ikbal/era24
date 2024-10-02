@@ -102,14 +102,14 @@ const Packages = () => {
         return (
             <>
                 <Toast isShow={toast.isShow} message={toast.message} bgColor={toast.bgColor} />
-                <div className="border border-white/20 w-[90%] relative left-[5%] mt-4 rounded">
-                    <h1 className="text-3xl text-center border-b border-white/20 pb-1.5 mb-2">Packages</h1>
+                <div className="border dark:border-white/20 border-black/30 shadow-xl w-[90%] relative left-[5%] mt-4 rounded">
+                    <h1 className="text-3xl text-center border-b dark:border-white/20 border-black/30 pb-1.5 mb-2">Packages</h1>
                     <div className=" grid md:grid-cols-3 grid-cols-1 rounded ">
                         {
                             packages.map((pkg: any) => (
                                 <div
                                     key={pkg.packagesId}
-                                    className="border border-white/20 text-center m-2 rounded overflow-hidden"
+                                    className="border dark:border-white/20 border-black/30 shadow-xl dark:shadow-gray-700/10 text-center m-2 rounded overflow-hidden"
                                 >
                                     <h1 className="border-b border-white/20 text-xl pb-1">
                                         {pkg.title}
@@ -123,7 +123,7 @@ const Packages = () => {
                                     <button
                                         type="button"
                                         onClick={() => BuyNowButtonClick(pkg.packagesId, pkg.price)}
-                                        className="border-t border-white/20 w-[100%] h-10 mt-2 duration-300 hover:bg-blue-700"
+                                        className="border-t dark:border-white/20 border-black/30 w-[100%] h-10 mt-2 text-lg font-semibold duration-300 hover:bg-indigo-700 hover:text-white"
                                     >
                                         Buy Now
                                     </button>

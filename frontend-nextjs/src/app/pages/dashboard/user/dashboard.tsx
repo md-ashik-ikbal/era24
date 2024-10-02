@@ -73,11 +73,11 @@ const UserDashboard = () => {
     if (loggedinData?.role == "user") {
         return (
             <>
-                <div className="border border-white/20 w-[90%] relative left-[5%] my-4 ">
-                    <h1 className="border-b border-white/20 mb-4 py-2 text-3xl text-center">My Ads</h1>
+                <div className="border dark:border-white/20 border-black/30 shadow-xl rounded w-[90%] relative left-[5%] my-4 ">
+                    <h1 className="border-b dark:border-white/20 border-black/30 mb-4 py-2 text-3xl text-center">My Ads</h1>
                     <div className="grid grid-cols-4">
                         <button
-                            className="mb-4 grid justify-items-center rounded"
+                            className="mb-4 grid justify-items-center"
                         >
                             <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
@@ -176,7 +176,7 @@ const UserDashboard = () => {
                     </div>
                 </div>
                 
-                    <div className="border border-white/20 h-[200px] md:h-[500px] w-[90%] relative left-[5%] mb-4 overflow-hidden rounded">
+                    <div className="border dark:border-white/20 border-black/30 shadow-xl h-[200px] md:h-[500px] w-[90%] relative left-[5%] mb-4 overflow-hidden rounded">
                         <AnimatePresence>
                             {
                                 (slideNumber == 1) && (
@@ -388,8 +388,8 @@ const UserDashboard = () => {
                         </AnimatePresence>
                     </div>
 
-                <div className="border border-white/20 w-[90%] relative left-[5%] mb-4 rounded ">
-                    <h1 className="border-b border-white/20 mb-4 py-2 text-3xl text-center">Company</h1>
+                <div className="border dark:border-white/20 border-black/30 shadow-xl w-[90%] relative left-[5%] mb-4 rounded ">
+                    <h1 className="border-b dark:border-white/20 border-black/20 mb-4 py-2 text-3xl text-center">Company</h1>
                     <div className="grid grid-cols-4">
                         <button
                             className="mb-4 grid justify-items-center rounded"
@@ -418,8 +418,8 @@ const UserDashboard = () => {
                     </div>
                 </div>
 
-                <div className="border border-white/20 w-[90%] relative left-[5%] mb-4 rounded ">
-                    <h1 className="border-b border-white/20 mb-4 py-2 text-3xl text-center">Other Partner</h1>
+                <div className="border dark:border-white/20 border-black/30 shadow-xl w-[90%] relative left-[5%] mb-4 rounded ">
+                    <h1 className="border-b dark:border-white/20 border-black/30 mb-4 py-2 text-3xl text-center">Other Partner</h1>
                     <div className="grid grid-cols-4">
                         <button
                             className="mb-4 grid justify-items-center rounded"

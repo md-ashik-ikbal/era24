@@ -103,35 +103,35 @@ const LogIn = () => {
             <div className="flex items-center justify-center min-h-screen">
                 <form
                     onSubmit={handleSubmit}
-                    className="bg-gray-900/50 border border-white/10 p-6 rounded shadow-md w-96"
+                    className="dark:bg-gray-900 border dark:border-white/10 border-black/30 shadow-xl dark:shadow-gray-700/10 p-6 rounded shadow-md w-96"
                 >
-                    <h2 className="text-2xl mb-8 text-center">Log In</h2>
+                    <h2 className="text-2xl mb-8 text-center border-b border-white/10 pb-2 font-semibold">Log In</h2>
                     {error && <p className="text-red-500 text-center text-sm mb-4">{error}</p>}
                     <div className="mb-4">
-                        <label htmlFor="email" className="block mb-1 text-sm">Email</label>
+                        <label htmlFor="email" className="block mb-1 font-semibold text-sm">Email</label>
                         <input
                             type="text"
                             id="email"
                             placeholder="example@company.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="outline outline-1 outline-white/20 duration-300 focus:outline-4 bg-black/30 p-2 w-full rounded"
+                            className="outline outline-1 dark:outline-white/20 outline-black/20 duration-300 focus:outline-4 bg-black/10 p-2 w-full rounded"
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="password" className="block mb-1 text-sm">Password</label>
+                        <label htmlFor="password" className="block mb-1 font-semibold text-sm">Password</label>
                         <input
                             type="password"
                             id="password"
                             placeholder="••••••••"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="outline outline-1 outline-white/20 duration-300 focus:outline-4 bg-black/30 p-2 w-full rounded"
+                            className="outline outline-1 dark:outline-white/20 outline-black/20 duration-300 focus:outline-4 bg-black/10 p-2 w-full rounded"
                         />
                     </div>
                     <button
                         type="submit"
-                        className="bg-blue-500 text-white p-2 mb-4 rounded w-full duration-300 hover:bg-blue-700"
+                        className="bg-blue-500 font-semibold text-gray-100 p-2 mb-4 rounded w-full duration-300 hover:bg-blue-800"
                     >
                         Log In
                     </button>
@@ -143,7 +143,7 @@ const LogIn = () => {
                     <button
                         type="button"
                         onClick={()=>{Router.push(Routes.Registration)}}
-                        className="border border-white/20 text-white p-2 mt-4 rounded w-full duration-300 hover:bg-white/10"
+                        className="border dark:border-white/20 border-black/30 font-semibold p-2 mt-4 rounded w-full duration-300 dark:hover:bg-white/10 hover:bg-black/30"
                     >
                         Create Account
                     </button>

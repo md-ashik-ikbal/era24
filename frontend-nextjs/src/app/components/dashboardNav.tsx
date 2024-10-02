@@ -50,7 +50,7 @@ const DashboardNavbar = () => {
     return (
         <>
             <nav
-                className={`sticky w-full top-0 h-14 px-4 duration-300 z-50 backdrop-blur bg-white/50 dark:bg-black/50 border-b border-black/10 dark:border-white/10`}
+                className={`sticky w-full top-0 h-14 px-4 duration-300 z-50 backdrop-blur bg-gray-200/30 dark:bg-gray-950/30 border-b border-black/20 dark:border-white/20`}
             >
                 <div className="relative w-48 h-14 ">
                     <button
