@@ -6,6 +6,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import dummyProfile from "@/app/public/images/dummyProfile.png";
 import ajkerdealAd1 from "@/app/public/images/ajkerdealAd1.png";
 import ajkerdealAd2 from "@/app/public/images/ajkerdealAd2.jpg";
@@ -27,14 +29,6 @@ import darazIcon from "@/app/public/images/daraz.png";
 import ajkerdealIcon from "@/app/public/images/adlogo.svg";
 import bikroyIcon from "@/app/public/images/bikroyLogo.png"
 import othobaIcon from "@/app/public/images/othobaLogo.jpg"
-
-
-
-
-
-import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
-
 
 const UserDashboard = () => {
     const Router = useRouter();
