@@ -17,7 +17,8 @@ const DashboardNavbar = () => {
     const Router = useRouter();
 
     const [loggedinData, setLoggedinData] = useState<any>(null);
-    const [showBanance, setShowBalance] = useState("Show Balance");
+    const [showBalance, setShowBalance] = useState("Show Balance");
+    const [balanceUpdateTrigger, setBalanceUpdateTrigger] = useState(0);
 
     useEffect(() => {
         const Fetch = async () => {
@@ -30,9 +31,17 @@ const DashboardNavbar = () => {
             }
         };
 
-        sessionStorage.getItem("loginId");
-
         Fetch();
+    }, [balanceUpdateTrigger]);
+
+    useEffect(() => {
+        // Set up an interval to update the balance every 30 seconds
+        const intervalId = setInterval(() => {
+            setBalanceUpdateTrigger(prev => prev + 1);
+        }, 1000);
+
+        // Clear the interval when the component unmounts
+        return () => clearInterval(intervalId);
     }, []);
 
     const ProfileButtonClick = () => {
@@ -47,7 +56,7 @@ const DashboardNavbar = () => {
         setShowBalance(loggedinData?.balance + " BDT");
         setTimeout(() => {
             setShowBalance("Show Balance");
-        }, 5000);
+        }, 1000);
     }
 
     if(loggedinData != null) {
@@ -89,7 +98,7 @@ const DashboardNavbar = () => {
                                                 className=""
                                             />
                                         </div>
-                                        <p className="col-span-4"> {showBanance} </p>
+                                        <p className="col-span-4"> {showBalance} </p>
                                     </motion.button>
                                 )
                             }

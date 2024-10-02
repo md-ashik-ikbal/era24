@@ -14,5 +14,6 @@ import { ActivityModule } from './activity/activity.module';
   ],
   controllers: [UserController],
   providers: [UserService],
+  exports: [TypeOrmModule]
 })
 export class UserModule {}

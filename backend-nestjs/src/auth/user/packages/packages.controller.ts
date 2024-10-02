@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PackagesService } from './packages.service';
 import { CreatePackageDto } from './dto/create-package.dto';
 import { UpdatePackageDto } from './dto/update-package.dto';
+import { BuyPackageDto } from './dto/buy-package.dto';
 
 @Controller('packages')
 export class PackagesController {
@@ -10,6 +11,10 @@ export class PackagesController {
   @Post("createPackage")
   create(@Body() createPackageDto: CreatePackageDto) {
     return this.packagesService.Create(createPackageDto);
+  }
+  @Post('buy')
+  buyPackage(@Body() buyPackageDto: BuyPackageDto) {
+    return this.packagesService.buyPackage(buyPackageDto);
   }
 
   @Get()
