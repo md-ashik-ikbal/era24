@@ -53,20 +53,43 @@ const Packages = () => {
     }, [toast.isShow]);
 
     const BuyNowButtonClick = async (pkgId: any, pkgPrice: any) => {
-        if(loggedinData?.balance >= pkgPrice){
-            setToast({
-                bgColor: "blue",
-                isShow: true,
-                message: `Success`
-            });
+        if (loggedinData?.balance >= pkgPrice) {
+            try {
+                
+                await axios.post(`${API_ENDPOINTS.BuyPackage}`, {
+                    userId: sessionStorage.getItem("loginId"),
+                    packageId: pkgId,
+                    packagePrice: pkgPrice,
+                });
+    
+                
+                setLoggedinData((prevData: any) => ({
+                    ...prevData,
+                    balance: prevData.balance - pkgPrice,
+                }));
+    
+                setToast({
+                    bgColor: "blue",
+                    isShow: true,
+                    message: `Success! You've purchased the package. Your new balance is ${loggedinData.balance - pkgPrice} BDT.`,
+                });
+            } catch (error) {
+                console.error(error);
+                setToast({
+                    bgColor: "red",
+                    isShow: true,
+                    message: `Error purchasing the package. Please try again.`,
+                });
+            }
         } else {
             setToast({
                 bgColor: "red",
                 isShow: true,
-                message: `You need more ${parseFloat(pkgPrice) - parseFloat(loggedinData.balance)} BDT to purchase this package`
+                message: `You need more ${parseFloat(pkgPrice) - parseFloat(loggedinData.balance)} BDT to purchase this package.`,
             });
         }
-    }
+    };
+    
 
     if(packages != null) {
         return (
