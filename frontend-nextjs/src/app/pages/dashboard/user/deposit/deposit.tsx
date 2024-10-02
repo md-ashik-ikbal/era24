@@ -8,121 +8,69 @@ import axios from 'axios';
 import API_ENDPOINTS from '@/app/routes/api';
 import BackButton from '@/app/components/backButton/backButton';
 import Loading from '@/app/components/loading/loading';
+import CustomRadio from '@/app/components/radio/radio';
 
-type FormData = {
-    paymentMethod: string;
-    amount: string;
-    transactionId: string;
-    message: string;
-};
+interface FormData {
+    selectedOption: string;
+    input1: string;
+    input2: string;
+    input3: string;
+}
 
 const Deposit = () => {
-    const Router = useRouter();
-    const [success, setSuccess] = useState("");
-    const { register, getValues, handleSubmit, formState: { errors } } = useForm<FormData>();
-    const [isLoading, setIsLoading] = useState(false);
+    const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
-    const onSubmit = async (data: any) => {
-        setIsLoading(true);
-        try {
-            const isEmailExist = await axios.get(API_ENDPOINTS.IsEmailExist+data.email);
-            
-            if (isEmailExist.data) {
-                alert("This email is already registered.");
-                setIsLoading(false);
-            } else {
-                const result = await axios.post(API_ENDPOINTS.Register, {
-                    role: "user",
-                    userName: data.userName,
-                    phone: data.phone,
-                    email: data.email,
-                    password: data.password,
-                    balance: 0
-                });
-
-                setSuccess("Registration Success. Now you can Log In");
-                setIsLoading(false);
-            }
-            
-        } catch (error) {
-            console.log(error);
-            setIsLoading(false);
-        }
-        
+    const onSubmit = (data: FormData) => {
+        console.log(data);
     };
 
     return (
         <>
-            <Loading isLoading={isLoading} message={"Loading..."} />
-            <div className="flex items-center justify-center min-h-screen">
-                <form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="bg-gray-800/50 p-8 rounded-lg shadow-md w-full max-w-md"
-                >
-                    <div className="w-md grid grid-cols-9 border-b border-white/20 pb-4 mb-8">
-                        <div className='w-10 h-10 col-span-1 absolute  rounded-full overflow-hidden'>
-                            <BackButton />
-                        </div>
-                        <h2 className="col-span-8 text-2xl font-bold text-center pb-4">Deposit</h2>
-                    </div>
-                    {success && <p className="text-blue-700 text-center mb-4 font-semibold text-sm">{success}</p>}
+            {/* <Loading isLoading={isLoading} message={"Loading..."} /> */}
+            <div className="min-h-[calc(90vh)] flex items-center justify-center">
+                <form onSubmit={handleSubmit(onSubmit)} className="bg-white/20 p-6 rounded shadow-md w-1/3">
+                    <h2 className="text-lg font-bold mb-4">Custom Radio Form</h2>
+
                     <div className="mb-4">
-                        <label className="block mb-2 text-sm font-medium text-gray-300">Username</label>
-                        <input
-                            type="text"
-                            {...register('paymentMethod', {
-                                required: 'Payment Method is required',
-                                minLength: { value: 3, message: "Username required to be grather than 3 characters" }
-                            })}
-                            className={`bg-transparent outline outline-2  duration-300 focus:outline-4 p-2 mb-1 w-full rounded ${errors.paymentMethod ? 'outline-pink-700' : 'outline-white/20'}`}
-                        />
-                        {errors.paymentMethod && <p className="text-pink-700 font-semibold text-sm">{errors.paymentMethod.message}</p>}
+                        <CustomRadio id="option1" label="Option 1" register={register} value="option1" />
+                        <CustomRadio id="option2" label="Option 2" register={register} value="option2" />
+                        <CustomRadio id="option3" label="Option 3" register={register} value="option3" />
                     </div>
 
                     <div className="mb-4">
-                        <label className="block mb-2 text-sm font-medium text-gray-300">Phone</label>
+                        <label htmlFor="input1" className="block text-sm mb-1">Input 1</label>
                         <input
                             type="text"
-                            {...register('amount', {
-                                required: 'Amount is required',
-                                min: { value: 500, message: "Minimum deposit 500 BDT" }
-                            })}
-
-                            className={`bg-transparent outline outline-2  duration-300 focus:outline-4 p-2 mb-1 w-full rounded ${errors.amount ? 'outline-pink-700' : 'outline-white/20'}`}
+                            id="input1"
+                            {...register('input1', { required: true })}
+                            className={`border p-2 w-full ${errors.input1 ? 'border-red-500' : 'border-gray-300'}`}
                         />
-                        {errors.amount && <p className="text-pink-700 font-semibold text-sm">{errors.amount.message}</p>}
+                        {errors.input1 && <span className="text-red-500 text-xs">This field is required</span>}
                     </div>
 
                     <div className="mb-4">
-                        <label className="block mb-2 text-sm font-medium text-gray-300">Email</label>
+                        <label htmlFor="input2" className="block text-sm mb-1">Input 2</label>
                         <input
                             type="text"
-                            {...register('transactionId', {
-                                required: 'Transaction Id is required',
-                            })}
-                            className={`bg-transparent outline outline-2  duration-300 focus:outline-4 p-2 mb-1 w-full rounded ${errors.transactionId ? 'outline-pink-700' : 'outline-white/20'}`}
+                            id="input2"
+                            {...register('input2', { required: true })}
+                            className={`border p-2 w-full ${errors.input2 ? 'border-red-500' : 'border-gray-300'}`}
                         />
-                        {errors.transactionId && <p className="text-pink-700 font-semibold text-sm">{errors.transactionId.message}</p>}
+                        {errors.input2 && <span className="text-red-500 text-xs">This field is required</span>}
                     </div>
 
                     <div className="mb-4">
-                        <label className="block mb-2 text-sm font-medium text-gray-300">Password</label>
+                        <label htmlFor="input3" className="block text-sm mb-1">Input 3</label>
                         <input
                             type="text"
-                            {...register('message', {
-                                required: 'Password is required',
-                            })}
-                            className={`bg-transparent outline outline-2  duration-300 focus:outline-4 p-2 mb-1 w-full rounded ${errors.message ? 'outline-pink-700' : 'outline-white/20'}`}
+                            id="input3"
+                            {...register('input3', { required: true })}
+                            className={`border p-2 w-full ${errors.input3 ? 'border-red-500' : 'border-gray-300'}`}
                         />
-                        {errors.message && <p className="text-pink-700 font-semibold text-sm">{errors.message.message}</p>}
+                        {errors.input3 && <span className="text-red-500 text-xs">This field is required</span>}
                     </div>
 
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-500 text-white p-2 mb-2 rounded-md hover:bg-blue-600 transition"
-                    >
-                        Request Deposit
-                    </button>
+                    <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">Submit</button>
                 </form>
             </div>
         </>
