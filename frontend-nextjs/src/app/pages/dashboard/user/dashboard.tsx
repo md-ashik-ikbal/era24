@@ -22,10 +22,18 @@ import packagesIcon from "@/app/public/images/packages.png";
 import transactionIcon from "@/app/public/images/transaction.png";
 import referIcon from "@/app/public/images/refer.png";
 import helpIcon from "@/app/public/images/help.png";
+import aboutIcon from "@/app/public/images/about.png"
+import darazIcon from "@/app/public/images/daraz.png";
+import ajkerdealIcon from "@/app/public/images/adlogo.svg";
+import bikroyIcon from "@/app/public/images/bikroyLogo.png"
+import othobaIcon from "@/app/public/images/othobaLogo.jpg"
+
+
 
 
 
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 
 
 const UserDashboard = () => {
@@ -408,7 +416,7 @@ const UserDashboard = () => {
                         >
                             <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image
-                                    src={dummyProfile}
+                                    src={aboutIcon}
                                     alt="NF"
                                     className=""
                                 />
@@ -421,54 +429,54 @@ const UserDashboard = () => {
                 <div className="border dark:border-white/20 border-black/30 shadow-xl w-[90%] relative left-[5%] mb-4 rounded ">
                     <h1 className="border-b dark:border-white/20 border-black/30 mb-4 py-2 text-3xl text-center">Other Partner</h1>
                     <div className="grid grid-cols-4">
-                        <button
+                        <Link href={"https://www.daraz.com.bd/"} target="_blank"
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
+                            <div className="w-10 h-10 mb-2 bg-white/70 rounded-full overflow-hidden content-center">
                                 <Image
-                                    src={dummyProfile}
+                                    src={darazIcon}
                                     alt="NF"
                                     className=""
                                 />
                             </div>
                             Daraz
-                        </button>
-                        <button
+                        </Link>
+                        <Link href={"https://ajkerdeal.com/"} target="_blank"
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
+                            <div className="w-10 h-10 mb-2 bg-white/70 rounded-full overflow-hidden content-center">
                                 <Image
-                                    src={dummyProfile}
+                                    src={ajkerdealIcon}
                                     alt="NF"
                                     className=""
                                 />
                             </div>
                             AjkerDeal
-                        </button>
-                        <button
+                        </Link>
+                        <Link href={"https://bikroy.com/"} target="_blank"
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
+                            <div className="w-10 h-10 mb-2 bg-white/70 rounded-full overflow-hidden content-center">
                                 <Image
-                                    src={dummyProfile}
+                                    src={bikroyIcon}
                                     alt="NF"
                                     className=""
                                 />
                             </div>
                             Bikroy
-                        </button>
-                        <button
+                        </Link>
+                        <Link href="https://www.othoba.com/" target="_blank"
                             className="mb-4 grid justify-items-center rounded"
                         >
-                            <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
+                            <div className="w-10 h-10 mb-2 bg-white/70 rounded-full overflow-hidden content-center">
                                 <Image
-                                    src={dummyProfile}
+                                    src={othobaIcon}
                                     alt="NF"
                                     className=""
                                 />
                             </div>
                             Othoba
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </>
