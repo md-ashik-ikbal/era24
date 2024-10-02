@@ -138,7 +138,7 @@ const AdminDashboard = () => {
                         <tbody>
                             {
                                 packages.map((pkg: any) => (
-                                    <tr key={pkg?.packagesId} className="text-center border-t h-10 dark:border-white/20 border-black/30 duration-300 hover:bg-black/20 hover:bg-white/20">
+                                    <tr key={pkg?.packagesId} className="text-center border-t h-10 dark:border-white/20 border-black/30 duration-300 hover:bg-black/20 dark:hover:bg-white/20">
                                         <td>{pkg?.packagesId}</td>
                                         <td>{pkg?.title}</td>
                                         <td>{pkg?.duration}</td>

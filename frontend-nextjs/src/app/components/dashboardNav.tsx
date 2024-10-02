@@ -25,23 +25,12 @@ const DashboardNavbar = () => {
             if (sessionStorage.getItem("loginId") != null && sessionStorage.getItem("loginId") != "-1") {
                 const result = await axios.get(API_ENDPOINTS.GetDataById + sessionStorage.getItem("loginId"));
                 setLoggedinData(result.data);
-                return result.data;
             } else if(sessionStorage.getItem("loginId") == "-1") {
                 setLoggedinData(SuperAdminDetails);
             }
         };
-
+        
         Fetch();
-    }, [balanceUpdateTrigger]);
-
-    useEffect(() => {
-        // Set up an interval to update the balance every 30 seconds
-        const intervalId = setInterval(() => {
-            setBalanceUpdateTrigger(prev => prev + 1);
-        }, 1000);
-
-        // Clear the interval when the component unmounts
-        return () => clearInterval(intervalId);
     }, []);
 
     const ProfileButtonClick = () => {
@@ -52,11 +41,14 @@ const DashboardNavbar = () => {
         }
     }
 
-    const ShowBalanceButtonClick = () => {
-        setShowBalance(loggedinData?.balance + " BDT");
+    const ShowBalanceButtonClick = async () => {
+        const balance = (await axios.get(API_ENDPOINTS.GetDataById + sessionStorage.getItem("loginId"))).data?.balance;
+        setShowBalance(balance + " BDT");
+
+        // setShowBalance(loggedinData?.balance + " BDT");
         setTimeout(() => {
             setShowBalance("Show Balance");
-        }, 1000);
+        }, 5000);
     }
 
     if(loggedinData != null) {
