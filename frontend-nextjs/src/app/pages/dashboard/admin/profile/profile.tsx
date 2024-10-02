@@ -28,11 +28,17 @@ const AdminProfile = () => {
         Fetch();
     }, []);
 
-    return(
-        <div>
-            <h1>Admin Profile.</h1>
-        </div>
-    );
+    if(loggedinData != null) {
+        return(
+            <div>
+                <h1>{loggedinData?.role + " Welcome."}</h1>
+            </div>
+        );
+    } else {
+        return(
+            <h1>Loading</h1>
+        );
+    }
 }
 
 export default AdminProfile;

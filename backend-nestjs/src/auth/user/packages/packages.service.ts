@@ -11,6 +11,7 @@ export class PackagesService {
     @InjectRepository(PackageEntity)
     private readonly packageRepository: Repository<PackageEntity>
   ){}
+  
   async Create(createPackageDto: CreatePackageDto) {
     let packagesEntity: PackageEntity = new PackageEntity();
     packagesEntity.title = createPackageDto.title;

@@ -27,6 +27,11 @@ export class UserController {
     return this.userService.GetDataById(id);
   }
 
+  @Get("/getAllUsers")
+  async GetAllUsers() {
+    return this.userService.findAll();
+  }
+
   // @Get("findAll")
   // findAll() {
   //   return this.userService.findAll();

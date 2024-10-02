@@ -53,48 +53,18 @@ const Packages = () => {
     }, [toast.isShow]);
 
     const BuyNowButtonClick = async (pkgId: any, pkgPrice: any) => {
-        if(pkgId == 1) {
-            if(loggedinData?.balance >= pkgPrice){
-                setToast({
-                    bgColor: "blue",
-                    isShow: true,
-                    message: `Success`
-                });
-            } else {
-                setToast({
-                    bgColor: "red",
-                    isShow: true,
-                    message: `You need more ${parseFloat(pkgPrice) - parseFloat(loggedinData.balance)} BDT to purchase this package`
-                });
-            }
-        } else if(pkgId == 2) {
-            if(loggedinData?.balance >= pkgPrice){
-                setToast({
-                    bgColor: "blue",
-                    isShow: true,
-                    message: `Success`
-                });
-            } else {
-                setToast({
-                    bgColor: "red",
-                    isShow: true,
-                    message: `You need more ${parseFloat(pkgPrice) - parseFloat(loggedinData.balance)} BDT to purchase this package`
-                });
-            }
-        } else if(pkgId == 3) {
-            if(loggedinData?.balance >= pkgPrice){
-                setToast({
-                    bgColor: "blue",
-                    isShow: true,
-                    message: `Success`
-                });
-            } else {
-                setToast({
-                    bgColor: "red",
-                    isShow: true,
-                    message: `You need more ${parseFloat(pkgPrice) - parseFloat(loggedinData.balance)} BDT to purchase this package`
-                });
-            }
+        if(loggedinData?.balance >= pkgPrice){
+            setToast({
+                bgColor: "blue",
+                isShow: true,
+                message: `Success`
+            });
+        } else {
+            setToast({
+                bgColor: "red",
+                isShow: true,
+                message: `You need more ${parseFloat(pkgPrice) - parseFloat(loggedinData.balance)} BDT to purchase this package`
+            });
         }
     }
 

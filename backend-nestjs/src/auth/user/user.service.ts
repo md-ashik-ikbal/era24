@@ -62,9 +62,10 @@ export class UserService {
     return result.length === 0 ? null : result[0];
   }
 
-  // findAll() {
-  //   return `This action returns all user`;
-  // }
+  async findAll() {
+    const res = await this.userRepository.find();
+    return res;
+  }
 
   // update(id: number, updateUserDto: UpdateUserDto) {
   //   return `This action updates a #${id} user`;

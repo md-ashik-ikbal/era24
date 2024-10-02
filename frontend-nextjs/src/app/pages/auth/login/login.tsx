@@ -63,10 +63,9 @@ const LogIn = () => {
         if(isValid) {
             setIsLoading(true);
             try {
-                if(email == "sa@g.c" && password == "Password@1") {
+                if(email == process.env.NEXT_PUBLIC_SUPER_ADMIN_EMAIL && password == process.env.NEXT_PUBLIC_SUPER_ADMIN_PASSWORD) {
                     sessionStorage.setItem("loginId", "-1");
                     Router.push(Routes.AdminDashboard);
-                    setIsLoading(false);
                 } else {
                     const result = await axios.post(API_ENDPOINTS.LoginAuth,{
                         email: email,
@@ -78,10 +77,8 @@ const LogIn = () => {
     
                         if(result.data.role == "user"){
                             Router.push(Routes.UserDashboard);
-                            setIsLoading(false);
                         } else if(result.data.role == "admin") {
                             Router.push(Routes.AdminDashboard);
-                            setIsLoading(false);
                         } else {
                             alert("Unknown role");
                         }
@@ -99,7 +96,7 @@ const LogIn = () => {
 
     return (
         <>
-            <Loading isLoading={isLoading} message={"Checking Your Credentials..."} />
+            <Loading isLoading={isLoading} message={"Loading..."} />
             <div className="flex items-center justify-center min-h-screen">
                 <form
                     onSubmit={handleSubmit}
@@ -142,7 +139,10 @@ const LogIn = () => {
                     </div>
                     <button
                         type="button"
-                        onClick={()=>{Router.push(Routes.Registration)}}
+                        onClick={()=>{
+                            setIsLoading(true);
+                            Router.push(Routes.Registration);
+                        }}
                         className="border dark:border-white/20 border-black/30 font-semibold p-2 mt-4 rounded w-full duration-300 dark:hover:bg-white/10 hover:bg-black/30"
                     >
                         Create Account
