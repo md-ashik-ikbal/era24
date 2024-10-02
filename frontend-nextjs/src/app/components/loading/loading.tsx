@@ -15,10 +15,10 @@ const Loading = ({
             {
                 isLoading && (
                     <motion.div
-                        className="fixed top-0 left-0 h-[calc(100%)] w-[calc(100%)] z-50 content-center grid justify-items-center"
+                        className="fixed top-0 left-0 h-[calc(100%)] w-[calc(100%)] z-50 backdrop-brightness-75 content-center grid justify-items-center"
                         initial={{
                             opacity: 0,
-                            backdropFilter: "blur(0)"
+                            backdropFilter: "blur(0)",
                         }}
                         animate={{
                             opacity: 1,

@@ -29,11 +29,13 @@ import darazIcon from "@/app/public/images/daraz.png";
 import ajkerdealIcon from "@/app/public/images/adlogo.svg";
 import bikroyIcon from "@/app/public/images/bikroyLogo.png"
 import othobaIcon from "@/app/public/images/othobaLogo.jpg"
+import Loading from "@/app/components/loading/loading";
 
 const UserDashboard = () => {
     const Router = useRouter();
     const [loggedinData, setLoggedinData] = useState<any>(null);
     const [slideNumber, setSlideNumber] = useState<number>(1);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const Fetch = async () => {
@@ -75,6 +77,7 @@ const UserDashboard = () => {
     if (loggedinData?.role == "user") {
         return (
             <>
+                <Loading isLoading={isLoading} message={"Loading..."} />
                 <div className="border dark:border-white/20 border-black/30 shadow-xl rounded w-[90%] relative left-[5%] my-4 ">
                     <h1 className="border-b dark:border-white/20 border-black/30 mb-4 py-2 text-3xl text-center">My Ads</h1>
                     <div className="grid grid-cols-4">
@@ -91,6 +94,10 @@ const UserDashboard = () => {
                             My Work
                         </button>
                         <button
+                            onClick={() => {
+                                Router.push(Routes.Depost);
+                                setIsLoading(true);
+                            }}
                             className="mb-4 grid justify-items-center rounded"
                         >
                             <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">

@@ -53,7 +53,7 @@ const AdminDashboard = () => {
         FetchPackages();
     }, []);
 
-    if(users != null && packages != null) {
+    if(users != null && packages != null && loggedinData != null) {
         return(
             <>
                <div className="rounded relative w-[90%] left-[5%] mt-4 overflow-auto border shadow dark:border-slate-600 border-black/30">
@@ -70,14 +70,14 @@ const AdminDashboard = () => {
                         <tbody>
                             {
                                 users.map((user: any) => (
-                                    (user.role == "admin") && (
-                                        <tr key={user.id} className="text-center border-t h-10 dark:border-white/20 border-black/30 duration-300 hover:bg-black/20 dark:hover:bg-white/20">
-                                            <td>{user.id}</td>
-                                            <td>{user.userName}</td>
-                                            <td>{user.email}</td>
+                                    (user?.role == "admin") && (
+                                        <tr key={user?.id} className="text-center border-t h-10 dark:border-white/20 border-black/30 duration-300 hover:bg-black/20 dark:hover:bg-white/20">
+                                            <td>{user?.id}</td>
+                                            <td>{user?.userName}</td>
+                                            <td>{user?.email}</td>
                                             <td className="p-0">
                                                 {
-                                                    loggedinData.role == "sadmin" ?(
+                                                    loggedinData?.role == "sadmin" ?(
                                                         <button className=" relative left-0 w-[100%] h-10 duration-300 hover:bg-rose-700">Demote</button>
                                                     ) : (
                                                         <p className="text-sm text-rose-700">Only Super Admin Can Modify Admin</p>
@@ -107,10 +107,10 @@ const AdminDashboard = () => {
                             {
                                 users.map((user: any) => (
                                     (user.role == "user") && (
-                                        <tr key={user.id} className="text-center border-t h-10 dark:border-white/20 border-black/30 duration-300 hover:bg-black/20 dark:hover:bg-white/20">
-                                            <td>{user.id}</td>
-                                            <td>{user.userName}</td>
-                                            <td>{user.email}</td>
+                                        <tr key={user?.id} className="text-center border-t h-10 dark:border-white/20 border-black/30 duration-300 hover:bg-black/20 dark:hover:bg-white/20">
+                                            <td>{user?.id}</td>
+                                            <td>{user?.userName}</td>
+                                            <td>{user?.email}</td>
                                             <td className=" border-rose-700 p-0">
                                                 <button className=" relative left-0 w-[100%] h-10 duration-300 hover:bg-rose-700">Actions</button>
                                             </td>
@@ -138,12 +138,12 @@ const AdminDashboard = () => {
                         <tbody>
                             {
                                 packages.map((pkg: any) => (
-                                    <tr key={pkg.packagesId} className="text-center border-t h-10 dark:border-white/20 border-black/30 duration-300 hover:bg-black/20 hover:bg-white/20">
-                                        <td>{pkg.packagesId}</td>
-                                        <td>{pkg.title}</td>
-                                        <td>{pkg.duration}</td>
-                                        <td>{pkg.description}</td>
-                                        <td>{pkg.price}</td>
+                                    <tr key={pkg?.packagesId} className="text-center border-t h-10 dark:border-white/20 border-black/30 duration-300 hover:bg-black/20 hover:bg-white/20">
+                                        <td>{pkg?.packagesId}</td>
+                                        <td>{pkg?.title}</td>
+                                        <td>{pkg?.duration}</td>
+                                        <td>{pkg?.description}</td>
+                                        <td>{pkg?.price}</td>
                                         <td className=" border-rose-700 p-0">
                                             <button className=" relative left-0 w-[100%] h-10 duration-300 hover:bg-rose-700">Actions</button>
                                         </td>
