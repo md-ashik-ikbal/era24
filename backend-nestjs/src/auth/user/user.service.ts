@@ -35,7 +35,7 @@ export class UserService {
       user.password = createUserDto.password;
       user.balance = createUserDto.balance;
   
-      return this.userRepository.save(user);
+      return await this.userRepository.save(user);
     } else {
       return `${createUserDto.email} is already exist`;
     }

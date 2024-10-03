@@ -30,6 +30,7 @@ const LogoutButton = () => {
                 <Image
                     src={LogoutIcon}
                     alt="NF"
+                    className="scale-75"
                 />
             </div>
         </motion.button>

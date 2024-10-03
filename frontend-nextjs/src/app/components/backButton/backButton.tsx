@@ -10,13 +10,13 @@ const BackButton = () => {
         <>
             <button
                 type="button"
-                className="text-white/30 text-sm text-center duration-300 hover:text-white/50"
+                className="duration-300 hover:text-white/50"
                 onClick={() => {Router.back()}}
             >
                 <Image
                     src={backIcon}
                     alt="NF"
-                    className="bg-white/30 drop-shadow-3xl rounded duration-300 hover:bg-white/50"
+                    className="border dark:border-white/20 border-black/30 rounded duration-300 hover:bg-white/20"
                 />
             </button>
         </>

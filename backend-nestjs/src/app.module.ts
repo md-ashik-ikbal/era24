@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './auth/user/user.module';
+import { DepodrawModule } from './depodraw/depodraw.module';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { UserModule } from './auth/user/user.module';
       }),
       inject: [ConfigService],
     }),
-    UserModule
+    UserModule,
+    DepodrawModule
   ],
   controllers: [AppController],
   providers: [AppService],

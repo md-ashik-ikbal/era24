@@ -97,7 +97,7 @@ const DashboardNavbar = () => {
                         </div>
                     </div>
     
-                    <motion.div className="h-full absolute top-0 right-4">
+                    <motion.div className="h-full absolute top-0 right-0">
                         <LogoutButton />
                     </motion.div>
                 </nav>
