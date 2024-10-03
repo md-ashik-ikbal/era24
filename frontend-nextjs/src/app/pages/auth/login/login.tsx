@@ -63,15 +63,15 @@ const LogIn = () => {
         if(isValid) {
             setIsLoading(true);
             try {
+                const result = await axios.post(API_ENDPOINTS.LoginAuth,{
+                    email: email,
+                    password: password
+                });
+                
                 if(email == process.env.NEXT_PUBLIC_SUPER_ADMIN_EMAIL && password == process.env.NEXT_PUBLIC_SUPER_ADMIN_PASSWORD) {
                     sessionStorage.setItem("loginId", "-1");
                     Router.push(Routes.AdminDashboard);
                 } else {
-                    const result = await axios.post(API_ENDPOINTS.LoginAuth,{
-                        email: email,
-                        password: password
-                    });
-    
                     if(result.data.id != null) {
                         sessionStorage.setItem("loginId", `${result.data.id}`);
     

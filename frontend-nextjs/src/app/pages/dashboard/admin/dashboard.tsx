@@ -42,12 +42,20 @@ const AdminDashboard = () => {
 
     useEffect(() => {
         const FetchPackages = async () => {
-            const result = await axios.get(API_ENDPOINTS.GetAllPackages);
-            setPackages(result.data);
+            try {
+                const result = await axios.get(API_ENDPOINTS.GetAllPackages);
+                setPackages(result.data);
+            } catch (error) {
+                console.log(error);
+            }
         };
         const FetchUsers = async () => {
-            const result = await axios.get(API_ENDPOINTS.GetAllUsers);
-            setUsers(result.data);
+            try {
+                const result = await axios.get(API_ENDPOINTS.GetAllUsers);
+                setUsers(result.data);
+            } catch (error) {
+                console.log(error);
+            }
         }
         FetchUsers();
         FetchPackages();
