@@ -82,15 +82,24 @@ const AdminDashboard = () => {
     }, [depoReq]);
 
     const [isActionShow, setIsActionShow] = useState(false);
-    const [clickPosition, setClickPosition] = useState<{ x: number; y: number } | null>(null);
 
+    useEffect(() => {
+        if (isActionShow) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+        return () => {
+          document.body.style.overflow = 'auto';
+        };
+      }, [isActionShow]);
+
+    
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        // e.preventDefault();
-        console.log(e)
+        console.log();
+
         if(!isActionShow) {
-            const { clientX, clientY } = e;
-            setClickPosition({ x: clientX, y: clientY });
-            setIsActionShow(true)
+            setIsActionShow(true);
         }
       };
 
@@ -104,35 +113,67 @@ const AdminDashboard = () => {
                                 initial={{
                                     opacity: 0,
                                     backdropFilter: "blur(0px)",
-                                    transform: "translate(-50%, -50%) scale(1.2)",
                                 }}
                                 animate={{
                                     opacity: 1,
                                     backdropFilter: "blur(20px)",
-                                    transform: "translate(-50%, -50%) scale(1)",
                                 }}
                                 exit={{
                                     opacity: 0,
                                     backdropFilter: "blur(0px)",
-                                    transform: "translate(-50%, -50%) scale(1.2)",
                                 }}
                                 transition={{
                                     duration: 0.5
                                 }}
-                                className="border shadow absolute z-50 dark:border-white/20 border-black/30 rounded md:w-[10%] w-[30%] p-2 grid grid-rows-2"
-                                style={{
-                                    left: `${clickPosition?.x}px`,
-                                    top: `${clickPosition?.y}px`,
-                                  }}
+                                className="absolute z-50 border dark:border-white/20 border-black/30 rounded md:top-14 top-14 left-[5%] h-[90%] w-[90%] p-2"
                                 >
-                                <button type="button" className="w-full text-center p-1 rounded my-1 duration-300 hover:bg-black/20 dark:hover:bg-white/20 hover:scale-110 active:scale-100">Action 1</button>
-                                <button
-                                    type="button"
-                                    onClick={() => {setIsActionShow(false)}}
-                                    className="w-full border border-rose-700 text-center p-1 rounded my-1 text-rose-700 duration-300 hover:bg-black/20 hover:bg-rose-700 hover:text-gray-900 hover:scale-110 active:scale-100"
+
+                                <motion.div
+                                    className="border dark:bg-black/20 bg-gray-400 dark:border-white/20 border-black/30 md:w-1/2 w-full md:h-[80%] h-1/2 absolute top-[50%] md:top-[10%] md:left-1/4 left-0 rounded"
+                                    initial={{
+                                        opacity: 0,
+                                        // scale: 1.2
+                                        transform: "scale(1.2)"
+                                    }}
+                                    animate={{
+                                        opacity: 1,
+                                        transform: "scale(1)"
+                                    }}
+                                    exit={{
+                                        opacity: 0,
+                                        transform: "scale(1.2)"
+                                    }}
+                                    transition={{
+                                        duration: 0.5
+                                    }}
                                 >
-                                    close
+                                    <button
+                                        type="button"
+                                        onClick={() => {setIsActionShow(false)}}
+                                        className="absolute right-2 top-1 border border-rose-700 text-center p-1 rounded my-1 text-rose-700 duration-300 hover:bg-black/20 hover:bg-rose-700 hover:text-gray-900 hover:scale-110 active:scale-100"
+                                    >
+                                        close
                                 </button>
+                                <h1 className="text-center text-xl my-4 pb-2 border-b border-black/30 dark:border-white/20">User Name</h1>
+                                <div>
+                                    <p>User Details</p>
+                                </div>
+                                <input
+                                    type="text"
+                                    placeholder="Send a quick message...."
+                                    className="bg-transparent outline outline-1 dark:outline-white/20 outline-black/30 duration-300 focus:outline-4 p-2 text-center rounded absolute bottom-28 w-[90%] left-[5%] "
+                                />
+                                <button type="button"
+                                    className="absolute w-[90%] left-[5%] bottom-16 border border-blue-700 text-center p-1 rounded my-1 px-2 text-blue-700 duration-300 hover:bg-black/20 hover:bg-blue-700 hover:text-gray-900 hover:scale-110 active:scale-100"
+                                >
+                                    Accept
+                                </button>
+                                <button type="button"
+                                    className="absolute w-[90%] left-[5%] bottom-4 border border-rose-700 text-center p-1 rounded my-1 px-2 text-rose-700 duration-300 hover:bg-black/20 hover:bg-rose-700 hover:text-gray-900 hover:scale-110 active:scale-100"
+                                >
+                                    Decline
+                                </button>
+                                </motion.div>
                             </motion.div>
                         )
                     }
@@ -156,7 +197,7 @@ const AdminDashboard = () => {
                                 depoReq.map((dr: any) => (
                                     <tr
                                         key={dr?.depodrawId}
-                                        onClick={() => handleClick(dr.depodrawId)}
+                                        onClick={handleClick}
                                         className="text-center border-t h-10 dark:border-white/20 border-black/30 duration-300 hover:bg-black/20 dark:hover:bg-white/20">
                                         <td>{dr?.depodrawId}</td>
                                         <td>{dr?.userId}</td>
