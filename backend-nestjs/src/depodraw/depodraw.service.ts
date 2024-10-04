@@ -40,11 +40,10 @@ export class DepodrawService {
       // return `A request has already been made with ${createDepodrawDto.transactionId} transaction id;`
       return false;
     }
-    
   }
 
-  findAll() {
-    return `This action returns all depodraw`;
+  async GetAllRequest() {
+    return await this.depdrawRepository.find();
   }
 
   findOne(id: number) {

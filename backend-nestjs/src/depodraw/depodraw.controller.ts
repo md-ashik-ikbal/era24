@@ -12,9 +12,9 @@ export class DepodrawController {
     return this.depodrawService.create(createDepodrawDto);
   }
 
-  @Get()
-  findAll() {
-    return this.depodrawService.findAll();
+  @Get("/getAllDepoReq")
+  GetAllRequest() {
+    return this.depodrawService.GetAllRequest();
   }
 
   @Get(':id')

@@ -8,6 +8,7 @@ const API_ENDPOINTS = {
     GetAllPackages: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/packages`,
     BuyPackage: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/packages/buy`,
     PostDepositeRequest: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/depo`,
+    GetAlDepositRequest: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/getAllDepoReq`,
     
 }
 
