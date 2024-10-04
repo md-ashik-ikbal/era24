@@ -31,6 +31,7 @@ export class DepodrawService {
       depodraw.userId = createDepodrawDto.userId;
       depodraw.phone = createDepodrawDto.phone;
       depodraw.amount = createDepodrawDto.amount;
+      depodraw.requestType = createDepodrawDto.requestType;
       depodraw.transactionId = createDepodrawDto.transactionId;
       depodraw.paymentMethod = createDepodrawDto.paymentMethod;
       depodraw.status = createDepodrawDto.status;
@@ -57,7 +58,7 @@ export class DepodrawService {
       return "Request id not found";
     } else {
       if (getPrevData.status == "accepted") {
-        return "This request is already been accepted";
+        return "This request has already been accepted";
       } else if(getPrevData.status == "pending") {
         const updatedData = this.depdrawRepository.merge(getPrevData, updateDepodrawDto);
         await this.depdrawRepository.save(updatedData);

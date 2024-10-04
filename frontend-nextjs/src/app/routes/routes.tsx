@@ -9,6 +9,7 @@ const Routes = {
     AdminDashboard: "/pages/dashboard/admin",
     AdminProfile: "/pages/dashboard/admin/profile",
     BuyPackage: "/pages/dashboard/user/packages",
+    Withdraw: "/pages/dashboard/user/withdraw",
 }
 
 export default Routes;

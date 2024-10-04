@@ -1,41 +1,35 @@
 "use client"
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import BackButton from "@/app/components/backButton/backButton";
+import Toast from "@/app/components/toast/toast";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import historyIcon from "@/app/public/images/history.png"
 import bkashLogo from "@/app/public/images/bkash.png";
 import nagadLogo from "@/app/public/images/nagad.png"
 import rocketLogo from "@/app/public/images/rocket.png"
-import historyIcon from "@/app/public/images/history.png"
-import Image from "next/image";
-import BackButton from "@/app/components/backButton/backButton";
-import { useEffect, useState } from "react";
-import Routes from "@/app/routes/routes";
 import Loading from "@/app/components/loading/loading";
-import Toast from "@/app/components/toast/toast";
-import { useRouter } from "next/navigation";
-import axios from "axios";
 import API_ENDPOINTS from "@/app/routes/api";
+import axios from "axios";
 
 type FormData = {
     phone: "",
     amount: "",
-    transactionId: "",
     paymentMethod: "bkash" | "nagad" | "rocket";
 };
 
-const Deposit = () => {
-
+const Withdraw = () => {
     const Router = useRouter();
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<FormData>();
-    const [loginId, setLoginId] = useState<any>(null);
-    const [depositDetails, setDepositDetails] = useState<any>(null);
     const [toast, setToast] = useState({
         isShow: false,
         message: "",
         bgColor: ""
     });
-
-    const selectedValue = watch("paymentMethod");
+    const [loginId, setLoginId] = useState<any>(null);
+    const [withdrawDetails, setWithdrawDetails] = useState<any>(null);
 
     useEffect(() => {
         setLoginId(sessionStorage.getItem("loginId"));
@@ -52,29 +46,33 @@ const Deposit = () => {
         }
     }, [toast.isShow]);
 
+    const { register, handleSubmit, watch, formState: { errors } } = useForm<FormData>();
+    const selectedValue = watch("paymentMethod");
+
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         try {
-            const result = await axios.post(API_ENDPOINTS.PostDepodrawRequest, {
-                userId: loginId,
-                requestType: "deposit",
-                ...data,
-                status: "pending"
-            });
-            setDepositDetails(result.data);
-            if (result.data == false) {
+            const loggedinData = (await axios.get(API_ENDPOINTS.GetDataById+loginId)).data[0];
+            if(loggedinData?.balance < 500) {
                 setToast({
                     isShow: true,
-                    message: `A request has already been made with "${data.transactionId}" transaction ID.`,
+                    message: `Minimum request amount is 500`,
                     bgColor: "red"
                 });
             } else {
+                const result = await axios.post(API_ENDPOINTS.PostDepodrawRequest, {
+                    userId: loginId,
+                    requestType: "withdraw",
+                    transactionId: "N/A",
+                    ...data,
+                    status: "pending"
+                });
+
                 setToast({
                     isShow: true,
                     message: `A request has been submitted wait to be verified.`,
                     bgColor: "blue"
                 });
             }
-
         } catch (error) {
             console.log(error);
         }
@@ -91,7 +89,7 @@ const Deposit = () => {
                                 <div className='w-10 h-10 col-span-1 rounded overflow-hidden'>
                                     <BackButton />
                                 </div>
-                                <h2 className="col-span-1 text-2xl font-bold text-center pb-2">Deposit</h2>
+                                <h2 className="col-span-1 text-2xl font-bold text-center pb-2">Withdraw</h2>
                                 <div className="w-full h-full col-span-1">
                                     <button type="button" className="w-10 h-10 rounded absolute right-2 top-2 border dark:border-white/20 border-black/30 duration-300 dark:hover:bg-white/20 hover:bg-black/30">
                                         <Image
@@ -125,24 +123,11 @@ const Deposit = () => {
                                     placeholder="XXX"
                                     {...register('amount', {
                                         required: 'Amount is required',
-                                        min: { value: 500, message: "Minimum deposit 500" }
+                                        min: { value: 500, message: "Minimum withdraw 500" }
                                     })}
                                     className={`bg-transparent outline outline-1 duration-300 focus:outline-4 p-2 mb-1 w-full rounded ${errors.amount ? 'outline-pink-700' : 'dark:outline-white/20 outline-black/30'}`}
                                 />
                                 {errors.amount && <p className="text-pink-700 font-semibold text-sm">{errors.amount.message}</p>}
-                            </div>
-
-                            <div className="mb-4">
-                                <label className="block mb-2 text-sm font-medium">Transaction ID</label>
-                                <input
-                                    type="text"
-                                    placeholder="XXXXXXXXX"
-                                    {...register('transactionId', {
-                                        required: 'Transaction id is required',
-                                    })}
-                                    className={`bg-transparent outline outline-1 duration-300 focus:outline-4 p-2 mb-1 w-full rounded ${errors.transactionId ? 'outline-pink-700' : 'dark:outline-white/20 outline-black/30'}`}
-                                />
-                                {errors.transactionId && <p className="text-pink-700 font-semibold text-sm">{errors.transactionId.message}</p>}
                             </div>
                         </div>
                         <div className=" relative w-[90%] left-[5%] md:w-1/2 md:left-[25%] border border-black/30 dark:border-white/20 rounded">
@@ -218,7 +203,7 @@ const Deposit = () => {
                                 type="submit"
                                 className="px-6 py-2 w-full duration-300 hover:bg-white/20"
                             >
-                                Deposit
+                                Withdraw
                             </button>
                         </div>
                     </form>
@@ -232,4 +217,4 @@ const Deposit = () => {
     }
 }
 
-export default Deposit;
+export default Withdraw;

@@ -105,7 +105,10 @@ const AdminDashboard = () => {
 
     const AcceptButtonClick = async () => {
         try {
-            
+            const response = await axios.patch(API_ENDPOINTS.PatchDepoStatus+depoReqDetails?.depodrawId, {
+                status: "accepted"
+            });
+            alert((response).data);
         } catch (error) {
             console.log(error)
         }
@@ -163,38 +166,60 @@ const AdminDashboard = () => {
                                     >
                                         close
                                 </button>
-                                <h1 className="text-center text-xl py-2 border-b border-black/30 dark:border-white/20">Confirm</h1>
-                                <p className="border-b border-black/30 dark:border-white/20 p-2 mb-1 text-center italic">A drposit request has been made with the following details :</p>
-                                <div className="text-center mt-2 grid grid-rows-5 gap-1 h-[35%] justify-center ">
-                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">User Id: {depoReqDetails.userId} </p>
-                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Phone: {depoReqDetails.phone} </p>
-                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Amount: {depoReqDetails.amount} </p>
-                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Transaction Id: {depoReqDetails.transactionId} </p>
-                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Payment Method: {depoReqDetails.paymentMethod} </p>
-                                </div>
-                                <textarea
-                                    placeholder="Send a quick message...."
-                                    className="bg-transparent p-4 h-24 outline outline-1 dark:outline-white/20 outline-black/30 duration-300 focus:outline-4 text-center rounded relative top-4 w-[90%] left-[5%] "
-                                />
-                                <button
-                                    type="button"
-                                    onClick={AcceptButtonClick}
-                                    className="relative w-[90%] left-[5%] top-4 bottom-16 border border-blue-700 text-center p-1 mt-4 rounded my-1 px-2 text-blue-700 duration-300 hover:bg-black/20 hover:bg-blue-700 hover:text-gray-900 hover:scale-110 active:scale-100"
-                                >
-                                    Accept
-                                </button>
-                                <button type="button"
-                                    className="relative w-[90%] left-[5%] top-4 border border-rose-700 text-center p-1 rounded mb-8 mt-4 px-2 text-rose-700 duration-300 hover:bg-black/20 hover:bg-rose-700 hover:text-gray-900 hover:scale-110 active:scale-100"
-                                >
-                                    Decline
-                                </button>
+                                    
+                                                <h1 className="text-center text-xl py-2 border-b border-black/30 dark:border-white/20">Confirm</h1>
+                                                <p className="border-b border-black/30 dark:border-white/20 p-2 mb-1 text-center italic">A drposit request has been made with the following details :</p>
+                                                <div className="text-center mt-2 grid grid-rows-5 gap-1 h-[35%] justify-center ">
+                                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">User Id: {depoReqDetails.userId} </p>
+                                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Phone: {depoReqDetails.phone} </p>
+                                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Amount: {depoReqDetails.amount} </p>
+                                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Transaction Id: {depoReqDetails.transactionId} </p>
+                                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Payment Method: {depoReqDetails.paymentMethod} </p>
+                                                </div>
+                                                
+                                    {
+                                        (depoReqDetails.status == "pending") && (
+                                            <>
+                                                <textarea
+                                                    placeholder="Send a quick message...."
+                                                    className="bg-transparent p-4 h-24 outline outline-1 dark:outline-white/20 outline-black/30 duration-300 focus:outline-4 text-center rounded relative top-4 w-[90%] left-[5%] "
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={AcceptButtonClick}
+                                                    className="relative w-[90%] left-[5%] top-4 border border-blue-700 text-center p-1 mt-4 rounded my-1 px-2 text-blue-700 duration-300 hover:bg-black/20 hover:bg-blue-700 hover:text-gray-900 hover:scale-110 active:scale-100"
+                                                >
+                                                    Accept
+                                                </button>
+                                                <button type="button"
+                                                    className="relative w-[90%] left-[5%] top-4 border border-rose-700 text-center p-1 rounded mb-8 mt-4 px-2 text-rose-700 duration-300 hover:bg-black/20 hover:bg-rose-700 hover:text-gray-900 hover:scale-110 active:scale-100"
+                                                >
+                                                    Decline
+                                                </button>
+                                            </>
+                                        )
+                                    }
+                                    {
+                                        (depoReqDetails.status == "accepted") && (
+                                            <>
+                                                <h1 className="text-center my-8 pt-4 underline italic px-4 font-bold text-3xl text-blue-700">This Request has been accepted.</h1>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {setIsActionShow(false)}}
+                                                    className="relative w-[90%] left-[5%] top-4 bottom-16 border border-blue-700 text-center p-1 mt-4 mb-8 rounded my-1 px-2 text-blue-700 duration-300 hover:bg-black/20 hover:bg-blue-700 hover:text-gray-900 hover:scale-110 active:scale-100"
+                                                >
+                                                    Done
+                                                </button>
+                                            </>
+                                        )
+                                    }
                                 </motion.div>
                             </motion.div>
                         )
                     }
                 </AnimatePresence>
                 <div className="rounded relative w-[90%] left-[5%] mt-4 overflow-auto border shadow dark:border-slate-600 border-black/30">
-                    <h1 className="border-b border-black/30 dark:border-white/20 text-center text-3xl pb-2 font-semibold">Deposit Request</h1>
+                    <h1 className="border-b border-black/30 dark:border-white/20 text-center text-3xl pb-2 font-semibold">Request Pannel</h1>
                     <table className="table-auto min-w-full ">
                         <thead className="">
                             <tr className="h-10">
@@ -202,6 +227,7 @@ const AdminDashboard = () => {
                                 <th className="">User Id</th>
                                 <th>Phone</th>
                                 <th>Amount</th>
+                                <th>Request Type</th>
                                 <th>Transaction Id</th>
                                 <th>Payment Method</th>
                                 <th>Status</th>
@@ -218,6 +244,7 @@ const AdminDashboard = () => {
                                         <td>{dr?.userId}</td>
                                         <td>{dr?.phone}</td>
                                         <td>{dr?.amount}</td>
+                                        <td>{dr?.requestType}</td>
                                         <td>{dr?.transactionId}</td>
                                         <td>{dr?.paymentMethod}</td>
                                         <td>{dr?.status}</td>

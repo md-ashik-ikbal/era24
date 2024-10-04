@@ -32,6 +32,11 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @Patch('updateBalance:id')
+  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.userService.UpdatateBalance(+id, updateUserDto);
+  }
+
   // @Get("findAll")
   // findAll() {
   //   return this.userService.findAll();
@@ -40,11 +45,6 @@ export class UserController {
   // @Get(':email')
   // findOne(@Param('email') email: string) {
   //   return this.userService.findOne(email);
-  // }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-  //   return this.userService.update(+id, updateUserDto);
   // }
 
   // @Delete(':id')

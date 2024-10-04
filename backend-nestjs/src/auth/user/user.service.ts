@@ -67,6 +67,26 @@ export class UserService {
     return res;
   }
 
+  async UpdatateBalance(id: number, updateUserDto: UpdateUserDto) {
+    const getPrevData = await this.userRepository.findOne({
+      where: {
+        id: id
+      }
+    });
+
+    if(!getPrevData) {
+      return false;
+    } else {
+      const sumBalance = getPrevData.balance + updateUserDto.balance;
+      const updatedData = {
+        ...getPrevData,
+        balance: sumBalance
+      }
+      await this.userRepository.save(updatedData);
+      return true;
+    }
+  }
+
   // update(id: number, updateUserDto: UpdateUserDto) {
   //   return `This action updates a #${id} user`;
   // }

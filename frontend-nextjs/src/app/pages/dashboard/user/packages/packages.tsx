@@ -1,5 +1,6 @@
 "use client"
 
+import BackButton from "@/app/components/backButton/backButton";
 import Loading from "@/app/components/loading/loading";
 import Toast from "@/app/components/toast/toast";
 import API_ENDPOINTS from "@/app/routes/api";
@@ -36,7 +37,7 @@ const Packages = () => {
             const result = await axios.get(API_ENDPOINTS.GetAllPackages);
             setPackages(result.data);
         };
-        
+
         Fetch();
 
     }, []);
@@ -55,19 +56,19 @@ const Packages = () => {
     const BuyNowButtonClick = async (pkgId: any, pkgPrice: any) => {
         if (loggedinData?.balance >= pkgPrice) {
             try {
-                
+
                 await axios.post(`${API_ENDPOINTS.BuyPackage}`, {
                     userId: sessionStorage.getItem("loginId"),
                     packageId: pkgId,
                     packagePrice: pkgPrice,
                 });
-    
-                
+
+
                 setLoggedinData((prevData: any) => ({
                     ...prevData,
                     balance: prevData.balance - pkgPrice,
                 }));
-    
+
                 setToast({
                     bgColor: "blue",
                     isShow: true,
@@ -89,9 +90,9 @@ const Packages = () => {
             });
         }
     };
-    
 
-    if(packages != null) {
+
+    if (packages != null) {
         return (
             <>
                 <Toast isShow={toast.isShow} message={toast.message} bgColor={toast.bgColor} />
@@ -128,7 +129,7 @@ const Packages = () => {
             </>
         );
     } else {
-        return(
+        return (
             <Loading isLoading={true} message={"Loading Packages..."} />
         );
     }

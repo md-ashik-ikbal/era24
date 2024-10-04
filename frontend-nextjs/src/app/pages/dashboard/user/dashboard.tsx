@@ -110,6 +110,10 @@ const UserDashboard = () => {
                             Deposit
                         </button>
                         <button
+                            onClick={() => {
+                                Router.push(Routes.Withdraw);
+                                setIsLoading(true);
+                            }}
                             className="mb-4 grid justify-items-center rounded"
                         >
                             <div className="w-10 h-10 rounded-full overflow-hidden">
@@ -122,7 +126,10 @@ const UserDashboard = () => {
                             Withdraw
                         </button>
                         <button
-                            onClick={() => {Router.push(Routes.Packages)}}
+                            onClick={() => {
+                                Router.push(Routes.Packages)
+                                setIsLoading(true);
+                            }}
                             className="mb-4 grid justify-items-center rounded"
                         >
                             <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
