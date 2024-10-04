@@ -13,6 +13,7 @@ const API_ENDPOINTS = {
     GetAdsVideos: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/ads`,
     GetAdById: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/ads/:id`,
     DeleteAd: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/ads/:id`,
+    PatchDepoStatus: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/updateStatus/`,
     
 }
 

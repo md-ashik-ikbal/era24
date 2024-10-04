@@ -82,7 +82,7 @@ const UserDashboard = () => {
                     <h1 className="border-b dark:border-white/20 border-black/30 mb-4 py-2 text-3xl text-center">My Ads</h1>
                     <div className="grid grid-cols-4">
                         <button
-                            className="mb-4 grid justify-items-center"
+                            className="mb-4 grid justify-items-center md:scale-100 scale-90"
                         >
                             <div className="w-10 h-10 mb-2 rounded-full overflow-hidden">
                                 <Image

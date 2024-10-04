@@ -20,9 +20,11 @@ const AdminDashboard = () => {
     const [users, setUsers] = useState<any>(null);
     const [packages, setPackages] = useState<any>(null);
     const [depoReq, setDepoReq] = useState<any>(null);
+    const [isActionShow, setIsActionShow] = useState(false);
+    const [depoReqDetails, setDepoReqDetails] = useState<any>(null);
 
     useEffect(() => {
-        const Fetch = async () => {
+        const URLProtect = async () => {
             if (sessionStorage.getItem("loginId") != null) {
                 if (sessionStorage.getItem("loginId") == "-1") {
                     setLoggedinData(SuperAdminDetails);
@@ -44,7 +46,7 @@ const AdminDashboard = () => {
             }
         };
 
-        Fetch();
+        URLProtect();
     }, []);
 
     useEffect(() => {
@@ -79,9 +81,7 @@ const AdminDashboard = () => {
         }
 
         FetchDepoReq();
-    }, [depoReq]);
-
-    const [isActionShow, setIsActionShow] = useState(false);
+    }, []);
 
     useEffect(() => {
         if (isActionShow) {
@@ -92,16 +92,25 @@ const AdminDashboard = () => {
         return () => {
           document.body.style.overflow = 'auto';
         };
-      }, [isActionShow]);
+    }, [isActionShow]);
 
     
-    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        console.log();
+    const depoReqClick = (e: any) => {
+        setDepoReqDetails(e);
 
         if(!isActionShow) {
             setIsActionShow(true);
         }
-      };
+    };
+
+    const AcceptButtonClick = async () => {
+        try {
+            
+        } catch (error) {
+            console.log(error)
+        }
+        setIsActionShow(false);
+    }
 
     if (users != null && packages != null && loggedinData != null && depoReq != null) {
         return (
@@ -116,7 +125,7 @@ const AdminDashboard = () => {
                                 }}
                                 animate={{
                                     opacity: 1,
-                                    backdropFilter: "blur(20px)",
+                                    backdropFilter: "blur(30px)",
                                 }}
                                 exit={{
                                     opacity: 0,
@@ -125,11 +134,11 @@ const AdminDashboard = () => {
                                 transition={{
                                     duration: 0.5
                                 }}
-                                className="absolute z-50 border dark:border-white/20 border-black/30 rounded md:top-14 top-14 left-[5%] h-[90%] w-[90%] p-2"
+                                className="overflow-hidden absolute z-50 border dark:border-white/20 border-black/30 rounded md:top-14 top-[70px] left-[5%] h-[90%] w-[90%] p-2"
                                 >
 
                                 <motion.div
-                                    className="border dark:bg-black/20 bg-gray-400 dark:border-white/20 border-black/30 md:w-1/2 w-full md:h-[80%] h-1/2 absolute top-[50%] md:top-[10%] md:left-1/4 left-0 rounded"
+                                    className="border dark:bg-black/20 bg-gray-400 dark:border-white/20 border-black/30 md:w-1/2 w-full absolute bottom-0 md:bottom-[13%] md:left-1/4 left-0 rounded"
                                     initial={{
                                         opacity: 0,
                                         // scale: 1.2
@@ -150,26 +159,32 @@ const AdminDashboard = () => {
                                     <button
                                         type="button"
                                         onClick={() => {setIsActionShow(false)}}
-                                        className="absolute right-2 top-1 border border-rose-700 text-center p-1 rounded my-1 text-rose-700 duration-300 hover:bg-black/20 hover:bg-rose-700 hover:text-gray-900 hover:scale-110 active:scale-100"
+                                        className="absolute right-1.5 top-0.5 border border-rose-700 text-center px-2 rounded my-1 text-rose-700 duration-300 hover:bg-black/20 hover:bg-rose-700 hover:text-gray-900 hover:scale-110 active:scale-100"
                                     >
                                         close
                                 </button>
-                                <h1 className="text-center text-xl my-4 pb-2 border-b border-black/30 dark:border-white/20">User Name</h1>
-                                <div>
-                                    <p>User Details</p>
+                                <h1 className="text-center text-xl py-2 border-b border-black/30 dark:border-white/20">Confirm</h1>
+                                <p className="border-b border-black/30 dark:border-white/20 p-2 mb-1 text-center italic">A drposit request has been made with the following details :</p>
+                                <div className="text-center mt-2 grid grid-rows-5 gap-1 h-[35%] justify-center ">
+                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">User Id: {depoReqDetails.userId} </p>
+                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Phone: {depoReqDetails.phone} </p>
+                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Amount: {depoReqDetails.amount} </p>
+                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Transaction Id: {depoReqDetails.transactionId} </p>
+                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Payment Method: {depoReqDetails.paymentMethod} </p>
                                 </div>
-                                <input
-                                    type="text"
+                                <textarea
                                     placeholder="Send a quick message...."
-                                    className="bg-transparent outline outline-1 dark:outline-white/20 outline-black/30 duration-300 focus:outline-4 p-2 text-center rounded absolute bottom-28 w-[90%] left-[5%] "
+                                    className="bg-transparent p-4 h-24 outline outline-1 dark:outline-white/20 outline-black/30 duration-300 focus:outline-4 text-center rounded relative top-4 w-[90%] left-[5%] "
                                 />
-                                <button type="button"
-                                    className="absolute w-[90%] left-[5%] bottom-16 border border-blue-700 text-center p-1 rounded my-1 px-2 text-blue-700 duration-300 hover:bg-black/20 hover:bg-blue-700 hover:text-gray-900 hover:scale-110 active:scale-100"
+                                <button
+                                    type="button"
+                                    onClick={AcceptButtonClick}
+                                    className="relative w-[90%] left-[5%] top-4 bottom-16 border border-blue-700 text-center p-1 mt-4 rounded my-1 px-2 text-blue-700 duration-300 hover:bg-black/20 hover:bg-blue-700 hover:text-gray-900 hover:scale-110 active:scale-100"
                                 >
                                     Accept
                                 </button>
                                 <button type="button"
-                                    className="absolute w-[90%] left-[5%] bottom-4 border border-rose-700 text-center p-1 rounded my-1 px-2 text-rose-700 duration-300 hover:bg-black/20 hover:bg-rose-700 hover:text-gray-900 hover:scale-110 active:scale-100"
+                                    className="relative w-[90%] left-[5%] top-4 border border-rose-700 text-center p-1 rounded mb-8 mt-4 px-2 text-rose-700 duration-300 hover:bg-black/20 hover:bg-rose-700 hover:text-gray-900 hover:scale-110 active:scale-100"
                                 >
                                     Decline
                                 </button>
@@ -197,7 +212,7 @@ const AdminDashboard = () => {
                                 depoReq.map((dr: any) => (
                                     <tr
                                         key={dr?.depodrawId}
-                                        onClick={handleClick}
+                                        onClick={() => {depoReqClick(dr)}}
                                         className="text-center border-t h-10 dark:border-white/20 border-black/30 duration-300 hover:bg-black/20 dark:hover:bg-white/20">
                                         <td>{dr?.depodrawId}</td>
                                         <td>{dr?.userId}</td>

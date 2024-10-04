@@ -12,6 +12,7 @@ export class PackagesController {
   create(@Body() createPackageDto: CreatePackageDto) {
     return this.packagesService.Create(createPackageDto);
   }
+  
   @Post('buy')
   buyPackage(@Body() buyPackageDto: BuyPackageDto) {
     return this.packagesService.buyPackage(buyPackageDto);

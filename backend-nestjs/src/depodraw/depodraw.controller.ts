@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { DepodrawService } from './depodraw.service';
 import { CreateDepodrawDto } from './dto/create-depodraw.dto';
 import { UpdateDepodrawDto } from './dto/update-depodraw.dto';
@@ -20,6 +20,11 @@ export class DepodrawController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.depodrawService.findOne(+id);
+  }
+
+  @Patch("updateStatus/:id")
+  UpdateStatus(@Param("id") depodrawId: number, @Body() updateDepodrawDto: UpdateDepodrawDto) {
+    return this.depodrawService.UpdatateStatus(depodrawId, updateDepodrawDto);
   }
 
   @Patch(':id')

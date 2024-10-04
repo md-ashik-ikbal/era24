@@ -46,6 +46,26 @@ export class DepodrawService {
     return await this.depdrawRepository.find();
   }
 
+  async UpdatateStatus(id: number, updateDepodrawDto: UpdateDepodrawDto) {
+    const getPrevData = await this.depdrawRepository.findOne({
+      where: {
+        depodrawId: id
+      }
+    });
+
+    if(!getPrevData) {
+      return "Request id not found";
+    } else {
+      if (getPrevData.status == "accepted") {
+        return "This request is already been accepted";
+      } else if(getPrevData.status == "pending") {
+        const updatedData = this.depdrawRepository.merge(getPrevData, updateDepodrawDto);
+        await this.depdrawRepository.save(updatedData);
+        return updatedData.status;
+      }
+    }
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} depodraw`;
   }
