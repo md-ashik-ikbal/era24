@@ -9,6 +9,10 @@ const API_ENDPOINTS = {
     BuyPackage: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/packages/buy`,
     PostDepositeRequest: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/depo`,
     GetAlDepositRequest: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/getAllDepoReq`,
+    UploadAd: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/ads/upload`,
+    GetAdsVideos: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/ads`,
+    GetAdById: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/ads/:id`,
+    DeleteAd: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/ads/:id`,
     
 }
 
