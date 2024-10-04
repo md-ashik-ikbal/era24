@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './auth/user/user.module';
 import { DepodrawModule } from './depodraw/depodraw.module';
+import { AdsModule } from './ads/ads.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { DepodrawModule } from './depodraw/depodraw.module';
       }),
       inject: [ConfigService],
     }),
+    AdsModule,
     UserModule,
     DepodrawModule
   ],
