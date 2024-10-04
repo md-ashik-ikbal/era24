@@ -105,10 +105,14 @@ const AdminDashboard = () => {
 
     const AcceptButtonClick = async () => {
         try {
-            const response = await axios.patch(API_ENDPOINTS.PatchDepoStatus+depoReqDetails?.depodrawId, {
+            const depoStatusUpdateResponse = await axios.patch(API_ENDPOINTS.PatchDepoStatus+depoReqDetails?.depodrawId, {
                 status: "accepted"
             });
-            alert((response).data);
+
+            const depoBalanceUpdateResponse = await axios.patch(API_ENDPOINTS.PatchUserBalance+depoReqDetails?.userId, {
+                balance: +depoReqDetails.amount
+            });
+
         } catch (error) {
             console.log(error)
         }
@@ -137,7 +141,7 @@ const AdminDashboard = () => {
                                 transition={{
                                     duration: 0.5
                                 }}
-                                className="overflow-hidden absolute z-50 border dark:border-white/20 border-black/30 rounded md:top-14 top-[70px] left-[5%] h-[90%] w-[90%] p-2"
+                                className="overflow-hidden fixed z-50 border dark:border-white/20 border-black/30 rounded md:top-14 top-[70px] left-[5%] h-[90%] w-[90%] p-2"
                                 >
 
                                 <motion.div

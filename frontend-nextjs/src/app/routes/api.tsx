@@ -14,7 +14,7 @@ const API_ENDPOINTS = {
     GetAdById: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/ads/:id`,
     DeleteAd: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/ads/:id`,
     PatchDepoStatus: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/updateStatus/`,
-    PatchUserBalance: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/user/`,
+    PatchUserBalance: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/user/updateDepoBalance/`,
 }
 
 export default API_ENDPOINTS;

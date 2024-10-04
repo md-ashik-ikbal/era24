@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateDepoBalanceDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { Repository } from 'typeorm';
@@ -67,7 +67,7 @@ export class UserService {
     return res;
   }
 
-  async UpdatateBalance(id: number, updateUserDto: UpdateUserDto) {
+  async UpdatateDepoBalance(id: number, updateDepoBalanceDto: UpdateDepoBalanceDto) {
     const getPrevData = await this.userRepository.findOne({
       where: {
         id: id
@@ -75,15 +75,15 @@ export class UserService {
     });
 
     if(!getPrevData) {
-      return false;
+      return "Id not found";
     } else {
-      const sumBalance = getPrevData.balance + updateUserDto.balance;
+      const sumBalance = getPrevData.balance + updateDepoBalanceDto.balance;
       const updatedData = {
         ...getPrevData,
         balance: sumBalance
       }
       await this.userRepository.save(updatedData);
-      return true;
+      return "Balance has been updated";
     }
   }
 
