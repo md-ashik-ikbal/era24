@@ -3,10 +3,12 @@ import { DepodrawService } from './depodraw.service';
 import { DepodrawController } from './depodraw.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DepodrawEntity } from './entities/depodraw.entity';
+import { UserModule } from './../auth/user/user.module';  // Import the UserModule
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([DepodrawEntity])
+    TypeOrmModule.forFeature([DepodrawEntity]),
+    UserModule  // Add UserModule here
   ],
   controllers: [DepodrawController],
   providers: [DepodrawService],

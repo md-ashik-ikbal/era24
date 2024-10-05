@@ -3,7 +3,7 @@ export class CreateDepodrawDto {
     userId: number;
     phone: string;
     amount: string;
-    requestType: string;
+    requestType: 'deposit' | 'withdraw';
     transactionId: string;
     paymentMethod: string;
     status: string;
