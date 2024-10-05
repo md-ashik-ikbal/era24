@@ -15,12 +15,15 @@ const API_ENDPOINTS = {
     CreateDepositRequest: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw`,
     CreateWithdrawRequest: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw`,
     GetAllDepositRequests: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/deposits`,
-    GetAllWithdrawRequests: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/withdrawals`,
+    GetAllWithdrawRequests: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/withdrawals/`,
     UpdateRequestStatus: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/status/`,
+
+    // Update Profile endpoints
+    UpdatePassword: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/user/updatePassword/`,
     
     // Previous deposit endpoints (keeping for backward compatibility if needed)
     PostDepodrawRequest: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/depo`,
-    GetAlDepositRequest: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/getAllDepoReq`,
+    GetAllDepositRequest: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/getAllDepoReq`,
     PatchDepoStatus: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/updateStatus/`,
     PatchUserBalance: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/user/updateDepoBalance/`,
     

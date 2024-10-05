@@ -59,12 +59,11 @@ const Withdraw = () => {
                     bgColor: "red"
                 });
             } else {
-                const result = await axios.post(API_ENDPOINTS.PostDepodrawRequest, {
+                await axios.post(API_ENDPOINTS.CreateWithdrawRequest, {
                     userId: loginId,
                     requestType: "withdraw",
                     transactionId: "N/A",
                     ...data,
-                    status: "pending"
                 });
 
                 setToast({

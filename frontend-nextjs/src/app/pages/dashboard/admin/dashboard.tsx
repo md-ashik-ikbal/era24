@@ -20,8 +20,10 @@ const AdminDashboard = () => {
     const [users, setUsers] = useState<any>(null);
     const [packages, setPackages] = useState<any>(null);
     const [depoReq, setDepoReq] = useState<any>(null);
+    const [drawReq, setDrawReq] = useState<any>(null);
     const [isActionShow, setIsActionShow] = useState(false);
     const [depoReqDetails, setDepoReqDetails] = useState<any>(null);
+    const [drawReqDetails, setDrawReqDetails] = useState<any>(null);
 
     useEffect(() => {
         const URLProtect = async () => {
@@ -73,14 +75,25 @@ const AdminDashboard = () => {
     useEffect(() => {
         const FetchDepoReq = async () => {
             try {
-                const result = await axios.get(API_ENDPOINTS.GetAlDepositRequest);
+                const result = await axios.get(API_ENDPOINTS.GetAllDepositRequests);
+                console.log(result.data);
                 setDepoReq(result.data);
             } catch (error) {
                 console.log(error);
             }
         }
 
+        const FetchDrawReq = async () => {
+            try {
+                const result = await axios.get(API_ENDPOINTS.GetAllWithdrawRequests);
+                setDrawReq(result.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
         FetchDepoReq();
+        FetchDrawReq();
     }, []);
 
     useEffect(() => {
@@ -96,6 +109,7 @@ const AdminDashboard = () => {
 
     
     const depoReqClick = (e: any) => {
+        setDrawReqDetails(null);
         setDepoReqDetails(e);
 
         if(!isActionShow) {
@@ -103,23 +117,47 @@ const AdminDashboard = () => {
         }
     };
 
+    const drawReqClick = async (e: any) => {
+        setDepoReqDetails(null);
+        setIsActionShow(true);
+        setDrawReqDetails(e);
+    }
+
     const AcceptButtonClick = async () => {
-        try {
-            const depoStatusUpdateResponse = await axios.patch(API_ENDPOINTS.PatchDepoStatus+depoReqDetails?.depodrawId, {
-                status: "accepted"
-            });
-
-            const depoBalanceUpdateResponse = await axios.patch(API_ENDPOINTS.PatchUserBalance+depoReqDetails?.userId, {
-                balance: +depoReqDetails.amount
-            });
-
-        } catch (error) {
-            console.log(error)
+        if(depoReqDetails != null) {
+            try {
+                await axios.patch(API_ENDPOINTS.UpdateRequestStatus+depoReqDetails?.depodrawId, {
+                    status: "accepted"
+                });
+            } catch (error) {
+                console.log(error)
+            }
+            setIsActionShow(false);
+        } else {
+            try {
+                await axios.patch(API_ENDPOINTS.UpdateRequestStatus+drawReqDetails.depodrawId, {
+                    status: "accepted"
+                });
+            } catch (error) {
+                console.log(error)
+            }
+            setIsActionShow(false);
         }
+    }
+
+    const DeclineButtonClick = async () => {
+        try {
+            await axios.patch(API_ENDPOINTS.UpdateRequestStatus+drawReqDetails.depodrawId, {
+                status: "rejected"
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
         setIsActionShow(false);
     }
 
-    if (users != null && packages != null && loggedinData != null && depoReq != null) {
+    if (users != null && packages != null && loggedinData != null && depoReq != null && drawReq != null) {
         return (
             <>
                 <AnimatePresence>
@@ -171,18 +209,38 @@ const AdminDashboard = () => {
                                         close
                                 </button>
                                     
-                                                <h1 className="text-center text-xl py-2 border-b border-black/30 dark:border-white/20">Confirm</h1>
-                                                <p className="border-b border-black/30 dark:border-white/20 p-2 mb-1 text-center italic">A drposit request has been made with the following details :</p>
-                                                <div className="text-center mt-2 grid grid-rows-5 gap-1 h-[35%] justify-center ">
-                                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">User Id: {depoReqDetails.userId} </p>
-                                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Phone: {depoReqDetails.phone} </p>
-                                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Amount: {depoReqDetails.amount} </p>
-                                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Transaction Id: {depoReqDetails.transactionId} </p>
-                                                    <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">Payment Method: {depoReqDetails.paymentMethod} </p>
-                                                </div>
+                                    <h1 className="text-center text-xl py-2 border-b border-black/30 dark:border-white/20">Confirm</h1>
+                                    <p className="border-b border-black/30 dark:border-white/20 p-2 mb-1 text-center italic">A drposit request has been made with the following details :</p>
+                                    <div className="text-center mt-2 grid grid-rows-5 gap-1 h-[35%] justify-center ">
+                                        <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">
+                                            User Id: {
+                                                (depoReqDetails?.userId == null) ? drawReqDetails.userId : depoReqDetails.userId
+                                            } 
+                                        </p>
+                                        <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">
+                                            Phone: {
+                                                (depoReqDetails?.phone == null) ? drawReqDetails.phone : depoReqDetails.phone
+                                            } 
+                                        </p>
+                                        <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">
+                                            Amount: {
+                                                    (depoReqDetails?.amount == null) ? drawReqDetails.amount : depoReqDetails.amount
+                                                } 
+                                            </p>
+                                        <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">
+                                            Transaction Id: {
+                                                (depoReqDetails?.transactionId == null) ? "Not Applicable" : depoReqDetails.transactionId
+                                            }
+                                        </p>
+                                        <p className="row-span-1 border border-black/30 dark:border-white/20 rounded px-4 pb-0.5">
+                                            Payment Method: {
+                                                (depoReqDetails?.paymentMethod == null) ? drawReqDetails.paymentMethod : depoReqDetails.paymentMethod
+                                            }
+                                        </p>
+                                    </div>
                                                 
                                     {
-                                        (depoReqDetails.status == "pending") && (
+                                        (depoReqDetails?.status == "pending" || drawReqDetails?.status == "pending") && (
                                             <>
                                                 <textarea
                                                     placeholder="Send a quick message...."
@@ -195,7 +253,9 @@ const AdminDashboard = () => {
                                                 >
                                                     Accept
                                                 </button>
-                                                <button type="button"
+                                                <button
+                                                    type="button"
+                                                    onClick={DeclineButtonClick}
                                                     className="relative w-[90%] left-[5%] top-4 border border-rose-700 text-center p-1 rounded mb-8 mt-4 px-2 text-rose-700 duration-300 hover:bg-black/20 hover:bg-rose-700 hover:text-gray-900 hover:scale-110 active:scale-100"
                                                 >
                                                     Decline
@@ -204,9 +264,13 @@ const AdminDashboard = () => {
                                         )
                                     }
                                     {
-                                        (depoReqDetails.status == "accepted") && (
+                                        (depoReqDetails?.status == "accepted" || drawReqDetails?.status == "accepted" || depoReqDetails?.status == "rejected" || drawReqDetails?.status == "rejected") && (
                                             <>
-                                                <h1 className="text-center my-8 pt-4 underline italic px-4 font-bold text-3xl text-blue-700">This Request has been accepted.</h1>
+                                                <h1 className="text-center my-8 pt-4 underline italic px-4 font-bold text-3xl text-blue-700">
+                                                    {
+                                                        (depoReqDetails?.status == "accepted" || drawReqDetails?.status == "accepted") ? "This request has been accepted" : "This request has been rejected"
+                                                    }
+                                                </h1>
                                                 <button
                                                     type="button"
                                                     onClick={() => {setIsActionShow(false)}}
@@ -250,6 +314,43 @@ const AdminDashboard = () => {
                                         <td>{dr?.amount}</td>
                                         <td>{dr?.requestType}</td>
                                         <td>{dr?.transactionId}</td>
+                                        <td>{dr?.paymentMethod}</td>
+                                        <td>{dr?.status}</td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div className="rounded relative w-[90%] left-[5%] mt-4 overflow-auto border shadow dark:border-slate-600 border-black/30">
+                    <h1 className="border-b border-black/30 dark:border-white/20 text-center text-3xl pb-2 font-semibold">Request Pannel</h1>
+                    <table className="table-auto min-w-full ">
+                        <thead className="">
+                            <tr className="h-10">
+                                <th className="">Id</th>
+                                <th className="">User Id</th>
+                                <th>Phone</th>
+                                <th>Amount</th>
+                                <th>Request Type</th>
+                                {/* <th>Transaction Id</th> */}
+                                <th>Payment Method</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                drawReq.map((dr: any) => (
+                                    <tr
+                                        key={dr?.depodrawId}
+                                        onClick={() => {drawReqClick(dr)}}
+                                        className="text-center border-t h-10 dark:border-white/20 border-black/30 duration-300 hover:bg-black/20 dark:hover:bg-white/20">
+                                        <td>{dr?.depodrawId}</td>
+                                        <td>{dr?.userId}</td>
+                                        <td>{dr?.phone}</td>
+                                        <td>{dr?.amount}</td>
+                                        <td>{dr?.requestType}</td>
+                                        {/* <td>{dr?.transactionId}</td> */}
                                         <td>{dr?.paymentMethod}</td>
                                         <td>{dr?.status}</td>
                                     </tr>
@@ -381,7 +482,9 @@ const AdminDashboard = () => {
         );
     } else {
         return (
-            <Loading isLoading={true} message={"Loading Data..."} />
+            <>
+                <Loading isLoading={true} message={"Loading Data..."} />
+            </>
         );
     }
 }

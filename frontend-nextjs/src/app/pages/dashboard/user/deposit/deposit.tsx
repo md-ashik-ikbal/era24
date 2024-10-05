@@ -54,11 +54,10 @@ const Deposit = () => {
 
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         try {
-            const result = await axios.post(API_ENDPOINTS.PostDepodrawRequest, {
+            const result = await axios.post(API_ENDPOINTS.CreateDepositRequest, {
                 userId: loginId,
                 requestType: "deposit",
-                ...data,
-                status: "pending"
+                ...data
             });
             setDepositDetails(result.data);
             if (result.data == false) {
