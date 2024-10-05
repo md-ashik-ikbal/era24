@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
 import { DepodrawService } from './depodraw.service';
 import { CreateDepodrawDto } from './dto/create-depodraw.dto';
 import { UpdateDepoStatusDto } from './dto/update-depodraw.dto';
@@ -7,28 +7,28 @@ import { UpdateDepoStatusDto } from './dto/update-depodraw.dto';
 export class DepodrawController {
   constructor(private readonly depodrawService: DepodrawService) {}
 
-  @Post("/depo")
+  @Post()
   create(@Body() createDepodrawDto: CreateDepodrawDto) {
     return this.depodrawService.create(createDepodrawDto);
   }
 
-  @Get("/getAllDepoReq")
+  @Get()
   GetAllRequest() {
     return this.depodrawService.GetAllRequest();
   }
 
-  @Patch("updateStatus/:id")
+  @Get('deposits')
+  GetDepositRequests() {
+    return this.depodrawService.GetDepositRequests();
+  }
+
+  @Get('withdrawals')
+  GetWithdrawRequests() {
+    return this.depodrawService.GetWithdrawRequests();
+  }
+
+  @Patch("status/:id")
   UpdateStatus(@Param("id") depodrawId: number, @Body() updateDepoStatusDto: UpdateDepoStatusDto) {
     return this.depodrawService.UpdatateDepoStatus(depodrawId, updateDepoStatusDto);
   }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateDepodrawDto: UpdateDepodrawDto) {
-  //   return this.depodrawService.update(+id, updateDepodrawDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.depodrawService.remove(+id);
-  // }
 }

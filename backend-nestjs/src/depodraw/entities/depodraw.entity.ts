@@ -17,7 +17,7 @@ export class DepodrawEntity {
     @Column()
     requestType: string;
 
-    @Column()
+    @Column({ nullable: true })
     transactionId: string;
 
     @Column()
