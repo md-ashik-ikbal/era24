@@ -128,7 +128,7 @@ const Registration: React.FC = () => {
                                 required: 'Password is required',
                                 validate: (value) => {
                                     const getPassword = getValues("password");
-                                    return value == getPassword || "Password do not match"
+                                    return value == getPassword || "Password did not match"
                                 }
                             })}
                             className={`bg-transparent outline outline-2 duration-300 focus:outline-4 p-2 mb-1 w-full rounded ${errors.confirmPassword ? 'outline-pink-700' : 'outline-white/20'}`}

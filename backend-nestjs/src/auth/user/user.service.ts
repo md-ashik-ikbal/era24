@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateDepoBalanceDto } from './dto/update-user.dto';
+import { UpdateDepoBalanceDto, UpdatePasswordDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { Repository } from 'typeorm';
@@ -84,6 +84,31 @@ export class UserService {
       }
       await this.userRepository.save(updatedData);
       return "Balance has been updated";
+    }
+  }
+
+  async ChangePassword(id: number, updatePasswordDto: UpdatePasswordDto) {
+    const isUserExist = await this.userRepository.findOne({
+      where: {
+        id: id
+      }
+    });
+
+    if(!isUserExist) {
+      return "User not found"
+    } else if(updatePasswordDto.currentPassword == isUserExist.password) {
+      if(updatePasswordDto.currentPassword == updatePasswordDto.newPassword) {
+        return "Current password could not be the new password!"
+      } else {
+        const newData = {
+          ...isUserExist,
+          password: updatePasswordDto.newPassword
+        }
+        await this.userRepository.save(newData);
+        return "Password changed"
+      }
+    } else {
+      return "Current password did not match"
     }
   }
 

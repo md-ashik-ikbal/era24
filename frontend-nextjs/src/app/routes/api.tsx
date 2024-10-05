@@ -19,7 +19,7 @@ const API_ENDPOINTS = {
     UpdateRequestStatus: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/status/`,
 
     // Update Profile endpoints
-    UpdatePassword: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/user/updatePassword/`,
+    ChangePassword: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/user/changePassword/`,
     
     // Previous deposit endpoints (keeping for backward compatibility if needed)
     PostDepodrawRequest: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/depo`,
