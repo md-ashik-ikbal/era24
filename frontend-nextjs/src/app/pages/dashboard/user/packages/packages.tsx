@@ -51,7 +51,7 @@ const Packages = () => {
         }
 
         FetchPurchasedPackages();
-    }, [])
+    }, []);
 
     useEffect(() => {
         const Timer = setTimeout(() => {
