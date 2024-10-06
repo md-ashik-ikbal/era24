@@ -287,7 +287,7 @@ const AdminDashboard = () => {
                     }
                 </AnimatePresence>
                 <div className="rounded relative w-[90%] left-[5%] mt-4 overflow-auto border shadow dark:border-slate-600 border-black/30">
-                    <h1 className="border-b border-black/30 dark:border-white/20 text-center text-3xl pb-2 font-semibold">Request Pannel</h1>
+                    <h1 className="border-b border-black/30 dark:border-white/20 text-center text-3xl pb-2 font-semibold">Deposit Request</h1>
                     <table className="table-auto min-w-full ">
                         <thead className="">
                             <tr className="h-10">
@@ -324,7 +324,7 @@ const AdminDashboard = () => {
                 </div>
 
                 <div className="rounded relative w-[90%] left-[5%] mt-4 overflow-auto border shadow dark:border-slate-600 border-black/30">
-                    <h1 className="border-b border-black/30 dark:border-white/20 text-center text-3xl pb-2 font-semibold">Request Pannel</h1>
+                    <h1 className="border-b border-black/30 dark:border-white/20 text-center text-3xl pb-2 font-semibold">Withdraw Request</h1>
                     <table className="table-auto min-w-full ">
                         <thead className="">
                             <tr className="h-10">

@@ -10,7 +10,7 @@ import { ActivityModule } from './activity/activity.module';
   imports: [
     TypeOrmModule.forFeature([UserEntity]),
     PackagesModule,
-    ActivityModule
+    ActivityModule,
   ],
   controllers: [UserController],
   providers: [UserService],

@@ -18,6 +18,12 @@ const API_ENDPOINTS = {
     GetAllWithdrawRequests: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/withdrawals/`,
     UpdateRequestStatus: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/depodraw/status/`,
 
+    // Activity related endpoints
+    CreateActivity: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/activity/createActivity`,
+    GetActivatedPackagesByUserId: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/activity/getActivatedPackagesByUserId/`,
+    UpdateRemainWatchTimesAndBalance: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/activity/updateRWTandBalance/`,
+    
+
     // Update Profile endpoints
     ChangePassword: `${process.env.NEXT_PUBLIC_DEFAULT_ENDPOINT}/user/changePassword/`,
     

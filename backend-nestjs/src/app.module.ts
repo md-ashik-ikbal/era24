@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './auth/user/user.module';
 import { DepodrawModule } from './depodraw/depodraw.module';
 import { AdsModule } from './ads/ads.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { AdsModule } from './ads/ads.module';
       }),
       inject: [ConfigService],
     }),
+    ScheduleModule.forRoot(),
     AdsModule,
     UserModule,
     DepodrawModule
