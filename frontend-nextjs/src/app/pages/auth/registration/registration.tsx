@@ -38,7 +38,7 @@ const Registration: React.FC = () => {
                     phone: data.phone,
                     email: data.email,
                     password: data.password,
-                    balance: 0
+                    balance: 100
                 });
 
                 setSuccess("Registration Success. Now you can Log In");
@@ -61,7 +61,7 @@ const Registration: React.FC = () => {
                     className="bg-gray-800/50 p-8 rounded-lg shadow-md w-full max-w-md"
                 >
                     <div className="w-md grid grid-cols-9 border-b border-white/20 pb-4 mb-8">
-                        <div className='w-10 h-10 col-span-1 absolute  rounded-full overflow-hidden'>
+                        <div className='w-10 h-10 col-span-1 absolute  rounded overflow-hidden'>
                             <BackButton />
                         </div>
                         <h2 className="col-span-8 text-2xl font-bold text-center pb-4">Register</h2>

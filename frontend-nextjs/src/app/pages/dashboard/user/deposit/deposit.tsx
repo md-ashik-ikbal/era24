@@ -84,6 +84,10 @@ const Deposit = () => {
             <>
                 <Toast isShow={toast.isShow} message={toast.message} bgColor={toast.bgColor} />
                 <div className="">
+                    <div className="md:w-1/2 w-[90%] p-2 left-[5%] sticky top-14 backdrop-blur z-50 border border-black/30 dark:border-white/20 rounded mt-4 md:left-1/4">
+                        <h1 className="text-center text-xl italic"> {"Send money to 01732078586 (Bkash Personal) and paste the information here"} </h1>
+                        <h1 className="text-center text-rose-700">Notice: Minimum deposit 500 BDT</h1>
+                    </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="border border-black/30 dark:border-white/20 rounded my-4 relative w-[90%] left-[5%] md:w-1/2 md:left-[25%] flex flex-col items-center justify-center ">
                             <div className="w-full p-2 grid grid-cols-3 border-b dark:border-white/20 border-black/30 mb-8">
