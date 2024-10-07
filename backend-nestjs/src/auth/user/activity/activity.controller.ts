@@ -23,6 +23,11 @@ export class ActivityController {
     return await this.activityService.ResetRemainWatchTime()
   }
 
+  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  async ExpirePackages() {
+    return await this.activityService.ExpirePackages()
+  }
+
   @Get('getActivatedPackagesByUserId/:id')
   async GetActivatedPackagesByUserId(@Param('id') id: string) {
     return await this.activityService.FindActivatedPackagesByUserId(+id);

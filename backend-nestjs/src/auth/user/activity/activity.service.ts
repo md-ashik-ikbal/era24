@@ -31,8 +31,7 @@ export class ActivityService {
       activity.packageId = createActivityDto.packageId;
       activity.packageTitle = createActivityDto.packageTitle;
       activity.packageStatus = createActivityDto.packageStatus;
-      activity.activeTime = createActivityDto.activeTime;
-      activity.expireTime = createActivityDto.expireTime;
+      activity.remainActive = createActivityDto.remainActive;
       activity.remainWatchTime = createActivityDto.remainWatchTime;
       await this.activityRepository.save(activity);
       return true;
@@ -66,6 +65,32 @@ export class ActivityService {
     }
   }
 
+  async ExpirePackages() {
+    const activePackages = await this.activityRepository.find({
+      where: {
+        packageStatus: "active"
+      }
+    });
+
+    if(activePackages.length == 0) {
+      return "No active packages";
+    } else if(activePackages[0].remainActive != 0) {
+      await this.activityRepository
+      .createQueryBuilder()
+      .update(ActivityEntity)
+      .set({
+        remainActive: () => `"remainActive" - 1`
+      }).execute()
+    } else {
+      await this.activityRepository
+      .createQueryBuilder()
+      .update(ActivityEntity)
+      .set({
+        packageStatus: `expired`
+      }).execute()
+    }
+  }
+
   findAll() {
     return this.activityRepository.find();
   }
@@ -73,7 +98,8 @@ export class ActivityService {
   async FindActivatedPackagesByUserId(id: number) {
     return await this.activityRepository.find({
       where: {
-        userId: id
+        userId: id,
+        packageStatus: "active"
       }
     });
   }

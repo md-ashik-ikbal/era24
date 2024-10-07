@@ -19,10 +19,7 @@ export class ActivityEntity {
     packageStatus: string;
 
     @Column()
-    activeTime: string;
-
-    @Column()
-    expireTime: string;
+    remainActive: number;
 
     @Column()
     remainWatchTime: number;

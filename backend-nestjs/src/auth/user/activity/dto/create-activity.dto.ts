@@ -3,7 +3,6 @@ export class CreateActivityDto {
     packageId: number;
     packageTitle: string;
     packageStatus: string;
-    activeTime: string;
-    expireTime: string;
+    remainActive: number;
     remainWatchTime: number;
 }

@@ -65,20 +65,6 @@ const Packages = () => {
     }, [toast.isShow]);
 
     const BuyNowButtonClick = async (pkg: any) => {
-        const currentDate = new Date();
-        const futureDate = new Date(currentDate);
-        futureDate.setDate(currentDate.getDate() + parseInt(pkg.duration));
-
-        const year = currentDate.getFullYear();
-        const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
-        const currentDay = String(currentDate.getDate()).padStart(2, '0');
-
-        const futureMonth = String(futureDate.getMonth() + 1).padStart(2, '0');
-        const futureDay = String(futureDate.getDate()).padStart(2, '0');
-
-        const formattedCurrentDate = `${currentDay}-${currentMonth}-${year}`;
-        const formattedFutureDate = `${futureDay}-${futureMonth}-${year}`;
-
         if (loggedinData?.balance >= pkg.price) {
             try {
                 const caResponse = await axios.post(API_ENDPOINTS.CreateActivity, {
@@ -86,8 +72,7 @@ const Packages = () => {
                     packageId: pkg.packagesId,
                     packageTitle: pkg.title,
                     packageStatus: "active",
-                    activeTime: formattedCurrentDate,
-                    expireTime: formattedFutureDate,
+                    remainActive: parseInt(pkg.duration),
                     remainWatchTime: parseFloat(pkg.description)
                 });
 
@@ -216,8 +201,8 @@ const Packages = () => {
                                                     {pkg.packageTitle}
                                                 </h1>
                                                 <p className="my-4">
-                                                    Purchase Date: {pkg.activeTime} <br />
-                                                    Expire Date: {pkg.expireTime} <br />
+                                                    Package Status: {pkg.packageStatus} <br />
+                                                    Days Remaining: {pkg.remainActive} <br />
                                                     Ads Remaining: {pkg.remainWatchTime}
                                                 
                                                 </p>
