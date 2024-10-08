@@ -4,7 +4,7 @@ import API_ENDPOINTS from '@/app/routes/api';
 import Routes from '@/app/routes/routes';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const LogIn = () => {
     const Router = useRouter();
@@ -32,11 +32,11 @@ const LogIn = () => {
                 Fetch();
             };
         }
-    }, []);
+    });
 
     const ValidationCheck = async (email: string, password: string) => {
-        const isValidEmail = (str: any) => /\S+@\S+\.\S+/.test(str);
-        const isValidPassword = (str: any) => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/.test(str);
+        const isValidEmail = (str: string) => /\S+@\S+\.\S+/.test(str);
+        const isValidPassword = (str: string) => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/.test(str);
 
         if (!email) {
             setError("Email is required");
@@ -56,7 +56,7 @@ const LogIn = () => {
         return true;
     }
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const isValid = await ValidationCheck(email, password);
 
@@ -88,7 +88,7 @@ const LogIn = () => {
                     }
                 }
             } catch (error) {
-                setError("Network error");
+                setError("Network error"+ error);
                 setIsLoading(false);
             }
         }

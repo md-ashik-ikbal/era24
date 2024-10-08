@@ -1,7 +1,5 @@
 "use client"
 
-import LogoutButton from "@/app/components/dashboard/logoutButton";
-import DashboardNavbar from "@/app/components/dashboardNav";
 import API_ENDPOINTS from "@/app/routes/api";
 import Routes from "@/app/routes/routes";
 import axios from "axios";
@@ -16,11 +14,13 @@ import showActionIcon from "@/app/public/images/showAction.png"
 const AdminDashboard = () => {
     const Router = useRouter();
 
-    const [loggedinData, setLoggedinData] = useState<any>(null);
-    const [users, setUsers] = useState<any>(null);
-    const [packages, setPackages] = useState<any>(null);
-    const [depoReq, setDepoReq] = useState<any>(null);
-    const [drawReq, setDrawReq] = useState<any>(null);
+    const [loggedinData, setLoggedinData] = useState({
+        role: ""
+    });
+    const [users, setUsers] = useState([]);
+    const [packages, setPackages] = useState([]);
+    const [depoReq, setDepoReq] = useState([]);
+    const [drawReq, setDrawReq] = useState([]);
     const [isActionShow, setIsActionShow] = useState(false);
     const [depoReqDetails, setDepoReqDetails] = useState<any>(null);
     const [drawReqDetails, setDrawReqDetails] = useState<any>(null);
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
         };
 
         URLProtect();
-    }, []);
+    });
 
     useEffect(() => {
         const FetchPackages = async () => {
@@ -70,7 +70,7 @@ const AdminDashboard = () => {
         }
         FetchUsers();
         FetchPackages();
-    }, []);
+    });
 
     useEffect(() => {
         const FetchDepoReq = async () => {
@@ -94,7 +94,7 @@ const AdminDashboard = () => {
 
         FetchDepoReq();
         FetchDrawReq();
-    }, []);
+    });
 
     useEffect(() => {
         if (isActionShow) {

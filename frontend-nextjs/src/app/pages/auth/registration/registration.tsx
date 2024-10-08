@@ -23,7 +23,7 @@ const Registration: React.FC = () => {
     const { register, getValues, handleSubmit, formState: { errors } } = useForm<FormData>();
     const [isLoading, setIsLoading] = useState(false);
 
-    const onSubmit = async (data: any) => {
+    const onSubmit = async (data: FormData) => {
         setIsLoading(true);
         try {
             const isEmailExist = await axios.get(API_ENDPOINTS.IsEmailExist+data.email);
@@ -32,7 +32,7 @@ const Registration: React.FC = () => {
                 alert("This email is already registered.");
                 setIsLoading(false);
             } else {
-                const result = await axios.post(API_ENDPOINTS.Register, {
+                await axios.post(API_ENDPOINTS.Register, {
                     role: "user",
                     userName: data.userName,
                     phone: data.phone,

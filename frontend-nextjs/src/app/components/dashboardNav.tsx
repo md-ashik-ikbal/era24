@@ -2,23 +2,24 @@
 
 import Routes from "@/app/routes/routes";
 import { useRouter } from "next/navigation";
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useEffect, useState } from "react";
 import axios from "axios";
 import API_ENDPOINTS from "../routes/api";
 import Image from "next/image";
 import dummyProfile from "@/app/public/images/dummyProfile.png"
 import dollarIcon from "@/app/public/images/dollarIcon.png"
-import Link from "next/link";
 import LogoutButton from "./dashboard/logoutButton";
 import { SuperAdminDetails } from "../pages/dashboard/admin/profile/adminDetails";
 
 const DashboardNavbar = () => {
     const Router = useRouter();
 
-    const [loggedinData, setLoggedinData] = useState<any>(null);
+    const [loggedinData, setLoggedinData] = useState({
+        role: "",
+        userName: ""
+    });
     const [showBalance, setShowBalance] = useState("Show Balance");
-    const [balanceUpdateTrigger, setBalanceUpdateTrigger] = useState(0);
 
     useEffect(() => {
         const Fetch = async () => {
